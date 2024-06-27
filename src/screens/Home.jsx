@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import MyButton from '../components/MyButton';
 
-const Home = () => {
+const Home = (props) => {
   const [contador, setContador] = useState(0);
+
+  console.log(props);
+
   const contar = () => {
     setContador(contador + 1);
   };
