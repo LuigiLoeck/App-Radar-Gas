@@ -7,19 +7,22 @@ import {
   TextInput,
   StyleSheet,
   Image,
-  KeyboardAvoidingView,
-  Platform,
 } from 'react-native';
 import MyButton from '../components/MyButton';
 import {COLORS} from '../assets/colors';
+// import app from '@react-native-firebase/app'
+import auth from '@react-native-firebase/auth';
 
 const SignIn = props => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const recuperarSenha = () => {
     alert('Recuperar senha');
   };
 
   const entrar = () => {
-    alert('Entrar');
+    console.log(email, password);
+    //alert('Entrar');
   };
 
   const cadastrar = () => {
@@ -40,8 +43,25 @@ const SignIn = props => {
             source={require('../assets/images/RadarGasLogo.png')}
             accessibilityLabel="logo da RadarGas"
           />
-          <TextInput style={styles.input} />
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            keyboardType="email-address"
+            returnKeyType="next"
+            onChangeText={t => setEmail(t)}
+            onEndEditing={() => this.passTextInput.focus()}
+          />
+          <TextInput
+            ref={input => {
+              this.passTextInput = input;
+            }}
+            style={styles.input}
+            secureTextEntry={true}
+            placeholder="Senha"
+            keyboardType="default"
+            returnKeyType="go"
+            onChangeText={t => setPassword(t)}
+          />
           <Text style={styles.textForgotPass} onPress={recuperarSenha}>
             Esqueceu sua senha?
           </Text>
@@ -99,7 +119,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingLeft: 2,
     paddingBottom: 1,
-    
   },
   textForgotPass: {
     color: COLORS.primaryDark,
