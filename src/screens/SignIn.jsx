@@ -7,27 +7,65 @@ import {
   TextInput,
   StyleSheet,
   Image,
+  Alert,
 } from 'react-native';
 import MyButton from '../components/MyButton';
 import {COLORS} from '../assets/colors';
-// import app from '@react-native-firebase/app'
 import auth from '@react-native-firebase/auth';
+import {CommonActions} from '@react-navigation/native';
 
-const SignIn = props => {
+const SignIn = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const recuperarSenha = () => {
-    alert('Recuperar senha');
+    navigation.navigate('ForgotPass');
   };
 
   const entrar = () => {
-    console.log(email, password);
-    //alert('Entrar');
+    if (email !== '' && password !== '') {
+      auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{name: 'Home'}],
+            }),
+          );
+        })
+        .catch(error => {
+          console.log('SignIn: login: ' + error);
+          switch (error.code) {
+            case 'auth/invalid-credential' ||
+              'auth/invalid-email' ||
+              'auth/invalid-password':
+              Alert.alert('Tente Novamente', 'Email ou senha inválidos');
+              break;
+            case 'auth/user-disabled':
+              Alert.alert(
+                'Conta Desativada',
+                'Usuário desativado, contate o suporte',
+              );
+              break;
+            default:
+              Alert.alert('Erro', 'Erro ao logar, tente novamente');
+              break;
+          }
+        });
+    } else {
+      Alert.alert('Campos Vazios', 'Preencha todos os campos');
+    }
   };
 
   const cadastrar = () => {
-    alert('Vai para Signup');
-    //props.navigation.navigate('SignUp');
+    // navigation.dispatch(
+    //   CommonActions.reset({
+    //     index: 0,
+    //     routes: [{name: 'SignUp'}],
+    //   }),
+    // );
+    navigation.navigate('SignUp');
   };
 
   // resolver problema de teclado cobrindo input
