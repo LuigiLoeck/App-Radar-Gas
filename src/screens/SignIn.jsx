@@ -18,15 +18,22 @@ const SignIn = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const recuperarSenha = () => {
-    navigation.navigate('ForgotPass');
+  const navigateToPage = page => {
+    navigation.navigate(page);
   };
 
-  const entrar = () => {
+  const handleSignIn = () => {
     if (email !== '' && password !== '') {
       auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
+          if (!auth().currentUser.emailVerified) {
+            Alert.alert(
+              'Email não verificado',
+              'Verifique seu email para continuar',
+            );
+            return;
+          }
           navigation.dispatch(
             CommonActions.reset({
               index: 0,
@@ -58,21 +65,10 @@ const SignIn = ({navigation}) => {
     }
   };
 
-  const cadastrar = () => {
-    // navigation.dispatch(
-    //   CommonActions.reset({
-    //     index: 0,
-    //     routes: [{name: 'SignUp'}],
-    //   }),
-    // );
-    navigation.navigate('SignUp');
-  };
-
   // resolver problema de teclado cobrindo input
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
-        style={styles.keyboardFix}
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{flexGrow: 1}}>
         <View style={styles.divSuperior}>
@@ -100,10 +96,12 @@ const SignIn = ({navigation}) => {
             returnKeyType="go"
             onChangeText={t => setPassword(t)}
           />
-          <Text style={styles.textForgotPass} onPress={recuperarSenha}>
+          <Text
+            style={styles.textForgotPass}
+            onPress={() => navigateToPage('ForgotPass')}>
             Esqueceu sua senha?
           </Text>
-          <MyButton title="Entrar" onClick={entrar} />
+          <MyButton title="Entrar" onClick={handleSignIn} />
         </View>
         <View style={styles.divInferior}>
           <View style={styles.divisionBar}>
@@ -113,7 +111,9 @@ const SignIn = ({navigation}) => {
           </View>
           <View style={styles.divCadastro}>
             <Text style={styles.textNormal}>Não tem uma conta?</Text>
-            <Text style={styles.textLink} onPress={cadastrar}>
+            <Text
+              style={styles.textLink}
+              onPress={() => navigateToPage('SignUp')}>
               Cadastre-se
             </Text>
           </View>
@@ -129,15 +129,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
   },
-  keyboardFix: {
-    flex: 1,
-    margin: 0,
-    padding: 0,
-  },
   divSuperior: {
     flex: 5,
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-end'
   },
   divInferior: {
     flex: 3,
