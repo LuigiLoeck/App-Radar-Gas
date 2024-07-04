@@ -13,6 +13,8 @@ import MyButton from '../components/MyButton';
 import {COLORS} from '../assets/colors';
 import auth from '@react-native-firebase/auth';
 import {CommonActions} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import firestore from '@react-native-firebase/firestore';
 
 const SignIn = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -20,6 +22,39 @@ const SignIn = ({navigation}) => {
 
   const navigateToPage = page => {
     navigation.navigate(page);
+  };
+
+  const storeUserCache = async value => {
+    try {
+      value.pass = password;
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem('user', jsonValue);
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{name: 'Home'}],
+        }),
+      );
+    } catch (e) {
+      console.log('SignIn: erro em storeUserCache', error);
+    }
+  };
+
+  const getUser = () => {
+    firestore()
+      .collection('users')
+      .doc(auth().currentUser.uid)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          storeUserCache(doc.data());
+        } else {
+          console.log('No such document!');
+        }
+      })
+      .catch(error => {
+        console.log('SignIn: erro em getUser', error);
+      });
   };
 
   const handleSignIn = () => {
@@ -34,12 +69,7 @@ const SignIn = ({navigation}) => {
             );
             return;
           }
-          navigation.dispatch(
-            CommonActions.reset({
-              index: 0,
-              routes: [{name: 'Home'}],
-            }),
-          );
+          getUser();
         })
         .catch(error => {
           console.log('SignIn: login: ' + error);
@@ -132,7 +162,7 @@ const styles = StyleSheet.create({
   divSuperior: {
     flex: 5,
     alignItems: 'center',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
   divInferior: {
     flex: 3,
