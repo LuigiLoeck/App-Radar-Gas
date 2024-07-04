@@ -17,7 +17,7 @@ const Preload = ({navigation}) => {
 
   const loginUser = async () => {
     const user = await getUserCache();
-    if (user) {
+    if (user !== null) {
       auth()
         .signInWithEmailAndPassword(user.email, user.password)
         .then(() => {
