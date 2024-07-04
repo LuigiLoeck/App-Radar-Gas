@@ -12,6 +12,7 @@ import MyButton from '../../components/MyButton';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {COLORS} from '../../assets/colors';
 import {CommonActions} from '@react-navigation/native';
+import firestore from '@react-native-firebase/firestore';
 
 const SignUpScreen = ({navigation}) => {
   const [username, setUsername] = useState('');
@@ -28,25 +29,38 @@ const SignUpScreen = ({navigation}) => {
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
         let user = auth().currentUser;
-        user
-          .sendEmailVerification()
+        firestore()
+          .collection('users')
+          .doc(user.uid)
+          .set({
+            username: username,
+            email: email,
+            phonenumber: phonenumber,
+          })
           .then(() => {
-            console.log('Email de verificação enviado');
-            Alert.alert(
-              'Cadastro Realizado',
-              'Foi enviado um email de verificação para ' + email + '.',
-            );
-            navigation.dispatch(
-              CommonActions.reset({
-                index: 0,
-                routes: [{name: 'SignIn'}],
-              }),
-            );
+            console.log('User added!');
+            user
+              .sendEmailVerification()
+              .then(() => {
+                console.log('Email de verificação enviado');
+                Alert.alert(
+                  'Cadastro Realizado',
+                  'Foi enviado um email de verificação para ' + email + '.',
+                );
+                navigation.dispatch(
+                  CommonActions.reset({
+                    index: 0,
+                    routes: [{name: 'SignIn'}],
+                  }),
+                );
+              })
+              .catch(error => {
+                console.log('Erro ao enviar email de verificação: ' + error);
+              });
           })
           .catch(error => {
-            console.log('Erro ao enviar email de verificação: ' + error);
+            console.log('Erro ao adicionar usuário: ' + error);
           });
-        console.log('User account created!' + email + password);
       })
       .catch(error => {
         console.log('SignUp: Cadastro:' + error);
