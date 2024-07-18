@@ -6,6 +6,7 @@ import SignIn from './src/screens/SignIn';
 import SignUp from './src/screens/SignUp';
 import ForgotPass from './src/screens/ForgotPass';
 import Preload from './src/screens/Preload';
+import Posto from './src/screens/Posto';
 import {StatusBar} from 'react-native';
 import {COLORS} from './src/assets/colors';
 
@@ -24,6 +25,7 @@ const App = () => {
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Posto" component={Posto} />
         <Stack.Screen name="ForgotPass" component={ForgotPass} />
       </Stack.Navigator>
     </NavigationContainer>

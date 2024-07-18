@@ -6,32 +6,41 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {COLORS} from '../../assets/colors';
 import Item from './Item';
 import firestore from '@react-native-firebase/firestore';
+import MyButton from '../../components/MyButton';
+import {create} from 'react-test-renderer';
 
 const Home = ({navigation}) => {
   const [data, setData] = useState([]);
 
   const getData = () => {
-    firestore()
+    const unsubscribe = firestore()
       .collection('postos')
-      .get()
-      .then(querySnapshot => {
-        let d = [];
-        querySnapshot.forEach(doc => {
-          const posto = {
-            id: doc.id,
-            ...doc.data(),
-          };
-          d.push(posto);
-        });
-        setData(d);
-      })
-      .catch(e => {
-        console.log('Home, getData:' + e);
-      });
+      .onSnapshot(
+        querySnapshot => {
+          let d = [];
+          querySnapshot.forEach(doc => {
+            const posto = {
+              id: doc.id,
+              ...doc.data(),
+            };
+            d.push(posto);
+          });
+          setData(d);
+        },
+        err => {
+          console.log('Home, getData:' + err);
+        },
+      );
+
+    return unsubscribe;
   };
 
   useEffect(() => {
-    getData();
+    const unsubscribe = getData();
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   const logOutUser = () => {
@@ -45,7 +54,7 @@ const Home = ({navigation}) => {
 
   const routeUser = item => {
     console.log('item', item);
-    Alert.alert(item.nome, item.endereco);
+    navigation.navigate('Posto', {item});
   };
 
   const renderItem = ({item}) => (
@@ -64,6 +73,18 @@ const Home = ({navigation}) => {
         keyExtractor={item => item.id}
         style={styles.flatlist}
       />
+      <MyButton
+        title="Adicionar Posto"
+        onClick={() =>
+          navigation.navigate('Posto', {
+            item: {
+              name: '',
+              address: '',
+            },
+            create: true,
+          })
+        }
+      />
     </SafeAreaView>
   );
 };
@@ -78,7 +99,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   header: {
@@ -92,5 +113,6 @@ const styles = StyleSheet.create({
   flatlist: {
     width: '80%',
     marginTop: 20,
+    maxHeight: '60%',
   },
 });
