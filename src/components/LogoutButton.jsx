@@ -1,11 +1,11 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import EncryptedStorage from 'react-native-encrypted-storage';
 import React from 'react';
 import {TouchableHighlight, StyleSheet, Image} from 'react-native';
 import auth from '@react-native-firebase/auth';
 
 const LogoutButton = props => {
   const signOut = () => {
-    AsyncStorage.removeItem('user')
+    EncryptedStorage.removeItem('user')
       .then(() => {
         auth()
           .signOut()

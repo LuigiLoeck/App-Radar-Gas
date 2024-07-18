@@ -1,27 +1,39 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, Header, FlatList} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, StyleSheet, Header, FlatList, Alert} from 'react-native';
 import LogoutButton from '../../components/LogoutButton';
 import {CommonActions} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {COLORS} from '../../assets/colors';
 import Item from './Item';
-
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
-];
+import firestore from '@react-native-firebase/firestore';
 
 const Home = ({navigation}) => {
+  const [data, setData] = useState([]);
+
+  const getData = () => {
+    firestore()
+      .collection('postos')
+      .get()
+      .then(querySnapshot => {
+        let d = [];
+        querySnapshot.forEach(doc => {
+          const posto = {
+            id: doc.id,
+            ...doc.data(),
+          };
+          d.push(posto);
+        });
+        setData(d);
+      })
+      .catch(e => {
+        console.log('Home, getData:' + e);
+      });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const logOutUser = () => {
     navigation.dispatch(
       CommonActions.reset({
@@ -33,10 +45,11 @@ const Home = ({navigation}) => {
 
   const routeUser = item => {
     console.log('item', item);
+    Alert.alert(item.nome, item.endereco);
   };
 
   const renderItem = ({item}) => (
-    <Item item={item.title} onPress={() => routeUser(item)} />
+    <Item item={item} onPress={() => routeUser(item)} />
   );
 
   return (
@@ -46,7 +59,7 @@ const Home = ({navigation}) => {
         <LogoutButton logout={logOutUser} />
       </View>
       <FlatList
-        data={DATA}
+        data={data}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         style={styles.flatlist}

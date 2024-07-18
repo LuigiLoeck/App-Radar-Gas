@@ -3,12 +3,12 @@ import {View, Text, Image, Alert} from 'react-native';
 import {CommonActions} from '@react-navigation/native';
 import {COLORS} from '../../assets/colors';
 import auth from '@react-native-firebase/auth';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 const Preload = ({navigation}) => {
   const getUserCache = async () => {
     try {
-      const jsonValue = await AsyncStorage.getItem('user');
+      const jsonValue = await EncryptedStorage.getItem('user');
       return jsonValue != null ? JSON.parse(jsonValue) : null;
     } catch (e) {
       console.log('Preload: erro em getUserCache', error);
@@ -31,9 +31,9 @@ const Preload = ({navigation}) => {
         .catch(error => {
           console.log('SignIn: login: ' + error);
           switch (error.code) {
-            case 'auth/invalid-credential' ||
-              'auth/invalid-email' ||
-              'auth/invalid-password':
+            case 'auth/invalid-credential':
+            case 'auth/invalid-email':
+            case 'auth/invalid-password':
               Alert.alert('Tente Novamente', 'Email ou senha inválidos');
               break;
             case 'auth/user-disabled':

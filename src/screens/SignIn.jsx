@@ -13,7 +13,7 @@ import MyButton from '../components/MyButton';
 import {COLORS} from '../assets/colors';
 import auth from '@react-native-firebase/auth';
 import {CommonActions} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import EncryptedStorage from 'react-native-encrypted-storage';
 import firestore from '@react-native-firebase/firestore';
 
 const SignIn = ({navigation}) => {
@@ -28,7 +28,7 @@ const SignIn = ({navigation}) => {
     try {
       value.password = password;
       const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem('user', jsonValue);
+      await EncryptedStorage.setItem('user', jsonValue);
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
@@ -74,9 +74,9 @@ const SignIn = ({navigation}) => {
         .catch(error => {
           console.log('SignIn: login: ' + error);
           switch (error.code) {
-            case 'auth/invalid-credential' ||
-              'auth/invalid-email' ||
-              'auth/invalid-password':
+            case 'auth/invalid-credential':
+            case 'auth/invalid-email':
+            case 'auth/invalid-password':
               Alert.alert('Tente Novamente', 'Email ou senha inválidos');
               break;
             case 'auth/user-disabled':
@@ -114,6 +114,8 @@ const SignIn = ({navigation}) => {
             returnKeyType="next"
             onChangeText={t => setEmail(t)}
             onEndEditing={() => this.passTextInput.focus()}
+            placeholderTextColor="#000"
+            autoCapitalize="none"
           />
           <TextInput
             ref={input => {
@@ -125,6 +127,8 @@ const SignIn = ({navigation}) => {
             keyboardType="default"
             returnKeyType="go"
             onChangeText={t => setPassword(t)}
+            placeholderTextColor="#000"
+            autoCapitalize="none"
           />
           <Text
             style={styles.textForgotPass}

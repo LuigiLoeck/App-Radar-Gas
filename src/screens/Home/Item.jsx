@@ -6,8 +6,8 @@ const Item = ({item, onPress}) => {
   return (
     <TouchableHighlight style={styles.button} onPress={onPress}>
       <>
-        <Text style={styles.textName}>{item}</Text>
-        {/* <Text style={styles.textEmail}>{item.email}</Text> */}
+        <Text style={styles.textName}>{item.nome}</Text>
+        <Text style={styles.textEmail}>{item.endereco}</Text>
       </>
     </TouchableHighlight>
   );

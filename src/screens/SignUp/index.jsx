@@ -98,6 +98,8 @@ const SignUpScreen = ({navigation}) => {
           value={username}
           onChangeText={t => setUsername(t)}
           onSubmitEditing={() => this.emailTextInput.focus()}
+          placeholderTextColor="#000"
+          autoCapitalize="none"
         />
         <TextInput
           style={styles.input}
@@ -110,32 +112,37 @@ const SignUpScreen = ({navigation}) => {
           value={email}
           onChangeText={t => setEmail(t)}
           onEndEditing={() => this.phoneTextInput.focus()}
+          placeholderTextColor="#000"
+          autoCapitalize="none"
         />
         <TextInput
           style={styles.input}
           ref={input => {
             this.phoneTextInput = input;
           }}
-          placeholder="Phone Number"
+          placeholder="Telefone"
           keyboardType="phone-pad"
           returnKeyType="next"
           value={phonenumber}
           onChangeText={t => setPhonenumber(t)}
           onSubmitEditing={() => this.passTextInput.focus()}
+          placeholderTextColor="#000"
         />
         <TextInput
           style={styles.input}
           ref={input => {
             this.passTextInput = input;
           }}
-          placeholder="Password"
+          placeholder="Senha"
           keyboardType="default"
           returnKeyType="go"
           value={password}
           onChangeText={t => setPassword(t)}
           secureTextEntry
+          placeholderTextColor="#000"
+          autoCapitalize="none"
         />
-        <MyButton title="Sign Up" onClick={handleSignUp} />
+        <MyButton title="Cadastrar" onClick={handleSignUp} />
       </ScrollView>
     </SafeAreaView>
   );

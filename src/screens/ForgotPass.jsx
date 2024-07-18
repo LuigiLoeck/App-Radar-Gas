@@ -50,6 +50,8 @@ const ForgotPass = ({navigation}) => {
         returnKeyType="go"
         onChangeText={t => setEmail(t)}
         autoFocus={true}
+        placeholderTextColor="#000"
+        autoCapitalize="none"
       />
       <MyButton title="Recuperar" onClick={recover} />
     </View>
