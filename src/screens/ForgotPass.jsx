@@ -74,5 +74,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     fontSize: 16,
     paddingBottom: 1,
+    color: COLORS.black,
   },
 });

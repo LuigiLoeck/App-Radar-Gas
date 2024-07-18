@@ -162,6 +162,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingLeft: 2,
     paddingBottom: 1,
+    color: COLORS.black,
   },
 });
 

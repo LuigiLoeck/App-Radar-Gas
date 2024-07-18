@@ -41,17 +41,17 @@ const Posto = ({route, navigation}) => {
     await firestore()
       .collection('postos')
       .doc(item.id)
-      // .update({
-      //   nome: name,
-      //   endereco: address,
-      // })
-      .set(
-        {
-          nome: name,
-          endereco: address,
-        },
-        {merge: true},
-      )
+      .update({
+        nome: name,
+        endereco: address,
+      })
+      // .set(
+      //   {
+      //     nome: name,
+      //     endereco: address,
+      //   },
+      //   {merge: true},
+      // )
       .then(() => {
         setName('');
         setAddress('');

@@ -1,20 +1,22 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Header, FlatList, Alert} from 'react-native';
-import LogoutButton from '../../components/LogoutButton';
 import {CommonActions} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {COLORS} from '../../assets/colors';
 import Item from './Item';
 import firestore from '@react-native-firebase/firestore';
+import LogoutButton from '../../components/LogoutButton';
 import MyButton from '../../components/MyButton';
-import {create} from 'react-test-renderer';
+import Loading from '../../components/Loading';
 
 const Home = ({navigation}) => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getData = () => {
     const unsubscribe = firestore()
       .collection('postos')
+      .orderBy('nome')
       .onSnapshot(
         querySnapshot => {
           let d = [];
@@ -26,6 +28,7 @@ const Home = ({navigation}) => {
             d.push(posto);
           });
           setData(d);
+          setLoading(false);
         },
         err => {
           console.log('Home, getData:' + err);
@@ -73,6 +76,7 @@ const Home = ({navigation}) => {
         keyExtractor={item => item.id}
         style={styles.flatlist}
       />
+
       <MyButton
         title="Adicionar Posto"
         onClick={() =>
@@ -85,6 +89,7 @@ const Home = ({navigation}) => {
           })
         }
       />
+      {loading && <Loading />}
     </SafeAreaView>
   );
 };
@@ -95,7 +100,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 24,
     marginLeft: 10,
-    color: COLORS.black,
+    color: COLORS.white,
   },
   container: {
     flex: 1,

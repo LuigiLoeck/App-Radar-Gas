@@ -15,10 +15,12 @@ import auth from '@react-native-firebase/auth';
 import {CommonActions} from '@react-navigation/native';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import firestore from '@react-native-firebase/firestore';
+import Loading from '../components/Loading';
 
 const SignIn = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const navigateToPage = page => {
     navigation.navigate(page);
@@ -29,13 +31,18 @@ const SignIn = ({navigation}) => {
       value.password = password;
       const jsonValue = JSON.stringify(value);
       await EncryptedStorage.setItem('user', jsonValue);
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{name: 'Home'}],
-        }),
-      );
-    } catch (e) {
+      setLoading(false);
+      // navigation.dispatch(
+      //   CommonActions.reset({
+      //     index: 0,
+      //     routes: [{name: 'Home'}],
+      //   }),
+      // );
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'Home'}],
+      });
+    } catch (error) {
       console.log('SignIn: erro em storeUserCache', error);
     }
   };
@@ -59,6 +66,7 @@ const SignIn = ({navigation}) => {
 
   const handleSignIn = () => {
     if (email !== '' && password !== '') {
+      setLoading(true);
       auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
@@ -67,11 +75,13 @@ const SignIn = ({navigation}) => {
               'Email não verificado',
               'Verifique seu email para continuar',
             );
+            setLoading(false);
             return;
           }
           getUser();
         })
         .catch(error => {
+          setLoading(false);
           console.log('SignIn: login: ' + error);
           switch (error.code) {
             case 'auth/invalid-credential':
@@ -153,6 +163,7 @@ const SignIn = ({navigation}) => {
           </View>
         </View>
       </ScrollView>
+      {loading && <Loading />}
     </SafeAreaView>
   );
 };
@@ -186,6 +197,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingLeft: 2,
     paddingBottom: 1,
+    color: COLORS.black,
   },
   textForgotPass: {
     color: COLORS.primaryDark,
@@ -229,15 +241,3 @@ const styles = StyleSheet.create({
 });
 
 export default SignIn;
-
-{
-  /* <KeyboardAvoidingView
-        style={{flex: 1}}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        <ScrollView
-          style={{flex: 1}}
-          keyboardShouldPersistTaps="handled"
-          contentContainerStyle={{flexGrow: 1}}>
-</ScrollView>
-      </KeyboardAvoidingView> */
-}

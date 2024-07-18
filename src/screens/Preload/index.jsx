@@ -10,7 +10,7 @@ const Preload = ({navigation}) => {
     try {
       const jsonValue = await EncryptedStorage.getItem('user');
       return jsonValue != null ? JSON.parse(jsonValue) : null;
-    } catch (e) {
+    } catch (error) {
       console.log('Preload: erro em getUserCache', error);
     }
   };
@@ -21,12 +21,10 @@ const Preload = ({navigation}) => {
       auth()
         .signInWithEmailAndPassword(user.email, user.password)
         .then(() => {
-          navigation.dispatch(
-            CommonActions.reset({
-              index: 0,
-              routes: [{name: 'Home'}],
-            }),
-          );
+          navigation.reset({
+            index: 0,
+            routes: [{name: 'Home'}],
+          });
         })
         .catch(error => {
           console.log('SignIn: login: ' + error);
@@ -48,12 +46,10 @@ const Preload = ({navigation}) => {
           }
         });
     } else {
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{name: 'SignIn'}],
-        }),
-      );
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'SignIn'}],
+      });
     }
   };
 
