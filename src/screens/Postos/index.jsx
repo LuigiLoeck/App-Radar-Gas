@@ -9,7 +9,7 @@ import LogoutButton from '../../components/LogoutButton';
 import MyButton from '../../components/MyButton';
 import Loading from '../../components/Loading';
 
-const Home = ({navigation}) => {
+const Postos = ({navigation}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -94,7 +94,7 @@ const Home = ({navigation}) => {
   );
 };
 
-export default Home;
+export default Postos;
 
 const styles = StyleSheet.create({
   text: {

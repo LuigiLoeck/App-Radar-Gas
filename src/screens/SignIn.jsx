@@ -32,15 +32,9 @@ const SignIn = ({navigation}) => {
       const jsonValue = JSON.stringify(value);
       await EncryptedStorage.setItem('user', jsonValue);
       setLoading(false);
-      // navigation.dispatch(
-      //   CommonActions.reset({
-      //     index: 0,
-      //     routes: [{name: 'Home'}],
-      //   }),
-      // );
       navigation.reset({
         index: 0,
-        routes: [{name: 'Home'}],
+        routes: [{name: 'Postos'}],
       });
     } catch (error) {
       console.log('SignIn: erro em storeUserCache', error);
