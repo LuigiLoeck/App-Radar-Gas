@@ -1,24 +1,22 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  Header,
-  FlatList,
   Alert,
   TextInput,
   ToastAndroid,
 } from 'react-native';
-import {CommonActions} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {COLORS} from '../../assets/colors';
-import firestore from '@react-native-firebase/firestore';
 import MyButton from '../../components/MyButton';
+import {PostoContext} from '../../context/PostoProvider';
 
 const Posto = ({route, navigation}) => {
   const {item} = route.params;
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
+  const {update, save, delposto} = useContext(PostoContext);
 
   useEffect(() => {
     if (route.params.create) {
@@ -37,31 +35,21 @@ const Posto = ({route, navigation}) => {
       Alert.alert('Erro', 'Preencha todos os campos');
       return;
     }
-
-    await firestore()
-      .collection('postos')
-      .doc(item.id)
-      .update({
+    if (
+      await update({
+        id: item.id,
         nome: name,
         endereco: address,
       })
-      // .set(
-      //   {
-      //     nome: name,
-      //     endereco: address,
-      //   },
-      //   {merge: true},
-      // )
-      .then(() => {
-        setName('');
-        setAddress('');
-        showToast('Posto atualizado com sucesso');
-        navigation.goBack();
-      })
-      .catch(e => {
-        console.log('Posto, handleUpdate:' + e);
-        Alert.alert('Erro', 'Erro ao atualizar o posto');
-      });
+    ) {
+      // retornando false
+      setName('');
+      setAddress('');
+      showToast('Posto atualizado com sucesso');
+      navigation.goBack();
+    } else {
+      Alert.alert('Erro', 'Erro ao atualizar o posto');
+    }
   };
 
   const handleDelete = () => {
@@ -73,26 +61,16 @@ const Posto = ({route, navigation}) => {
       },
       {
         text: 'OK',
-        onPress: () => {
-          deletePosto();
+        onPress: async () => {
+          if (await delposto(item)) {
+            showToast('Posto excluído com sucesso');
+            navigation.goBack();
+          } else {
+            Alert.alert('Erro', 'Erro ao excluir o posto');
+          }
         },
       },
     ]);
-  };
-
-  const deletePosto = async () => {
-    await firestore()
-      .collection('postos')
-      .doc(item.id)
-      .delete()
-      .then(() => {
-        showToast('Posto excluído com sucesso');
-        navigation.goBack();
-      })
-      .catch(e => {
-        console.log('Posto, handleDelete:' + e);
-        Alert.alert('Erro', 'Erro ao excluir o posto');
-      });
   };
 
   const handleCreate = async () => {
@@ -102,23 +80,19 @@ const Posto = ({route, navigation}) => {
       Alert.alert('Erro', 'Preencha todos os campos');
       return;
     }
-
-    await firestore()
-      .collection('postos')
-      .add({
+    if (
+      await save({
         nome: name,
         endereco: address,
       })
-      .then(() => {
-        setName('');
-        setAddress('');
-        showToast('Posto criado com sucesso');
-        navigation.goBack();
-      })
-      .catch(e => {
-        console.log('Posto, handleCreate:' + e);
-        Alert.alert('Erro', 'Erro ao criar o posto');
-      });
+    ) {
+      setName('');
+      setAddress('');
+      showToast('Posto criado com sucesso');
+      navigation.goBack();
+    } else {
+      Alert.alert('Erro', 'Erro ao criar o posto');
+    }
   };
 
   return (

@@ -1,58 +1,23 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {View, Text, StyleSheet, Header, FlatList, Alert} from 'react-native';
 import {CommonActions} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {COLORS} from '../../assets/colors';
 import Item from './Item';
-import firestore from '@react-native-firebase/firestore';
 import LogoutButton from '../../components/LogoutButton';
 import MyButton from '../../components/MyButton';
 import Loading from '../../components/Loading';
+import {PostoContext} from '../../context/PostoProvider';
 
 const Postos = ({navigation}) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const getData = () => {
-    const unsubscribe = firestore()
-      .collection('postos')
-      .orderBy('nome')
-      .onSnapshot(
-        querySnapshot => {
-          let d = [];
-          querySnapshot.forEach(doc => {
-            const posto = {
-              id: doc.id,
-              ...doc.data(),
-            };
-            d.push(posto);
-          });
-          setData(d);
-          setLoading(false);
-        },
-        err => {
-          console.log('Home, getData:' + err);
-        },
-      );
-
-    return unsubscribe;
-  };
-
-  useEffect(() => {
-    const unsubscribe = getData();
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+  const [loading, setLoading] = useState(false);
+  const {postos} = useContext(PostoContext);
 
   const logOutUser = () => {
-    navigation.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [{name: 'AuthStack'}],
-      }),
-    );
+    navigation.reset({
+      index: 0,
+      routes: [{name: 'AuthStack'}],
+    });
   };
 
   const routeUser = item => {
@@ -71,7 +36,7 @@ const Postos = ({navigation}) => {
         <LogoutButton logout={logOutUser} />
       </View>
       <FlatList
-        data={data}
+        data={postos}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         style={styles.flatlist}

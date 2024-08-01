@@ -29,12 +29,12 @@ const SignIn = ({navigation}) => {
     if (email && password) {
       setLoading(true);
       msgError = await signIn(email, password);
-      if (msgError === 'ok'){
+      if (msgError === 'ok') {
         setLoading(false);
         navigation.reset({
           index: 0,
           routes: [{name: 'AppStack'}],
-        })
+        });
       } else {
         setLoading(false);
         Alert.alert('Erro', msgError);
@@ -42,7 +42,7 @@ const SignIn = ({navigation}) => {
     } else {
       Alert.alert('Campos Vazios', 'Preencha todos os campos');
     }
-  }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -61,7 +61,8 @@ const SignIn = ({navigation}) => {
             keyboardType="email-address"
             returnKeyType="next"
             onChangeText={t => setEmail(t)}
-            onEndEditing={() => this.passTextInput.focus()}
+            onSubmitEditing={() => this.passTextInput.focus()}
+            blurOnSubmit={false}
             placeholderTextColor="#000"
             autoCapitalize="none"
           />

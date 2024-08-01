@@ -3,7 +3,7 @@ import {View, Image} from 'react-native';
 import {COLORS} from '../../assets/colors';
 import {AuthUserContext} from '../../context/AuthUserProvider';
 
-export default Preload = ({navigation}) => {
+export default function Preload({navigation}) {
   const {getUserCache, signIn} = useContext(AuthUserContext);
 
   const loginUser = async () => {
@@ -40,4 +40,4 @@ export default Preload = ({navigation}) => {
       />
     </View>
   );
-};
+}

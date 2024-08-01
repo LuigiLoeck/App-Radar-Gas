@@ -1,4 +1,4 @@
-package com.radargasapp
+package com.luigi_pdm
 
 import android.app.Application
 import com.facebook.react.PackageList

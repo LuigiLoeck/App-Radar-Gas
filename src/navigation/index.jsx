@@ -1,12 +1,15 @@
 import React from 'react';
 
-import { AuthUserProvider } from '../context/AuthUserProvider';
 import Routes from './Routes';
+import {AuthUserProvider} from '../context/AuthUserProvider';
+import {PostoProvider} from '../context/PostoProvider';
 
-export default Providers = () => {
+export default function Providers() {
   return (
     <AuthUserProvider>
-      <Routes />
+      <PostoProvider>
+        <Routes />
+      </PostoProvider>
     </AuthUserProvider>
   );
 }

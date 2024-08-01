@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {TouchableHighlight, StyleSheet, Image} from 'react-native';
 import {AuthUserContext} from '../context/AuthUserProvider';
 

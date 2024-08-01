@@ -1,13 +1,9 @@
 import React, {useState, useContext} from 'react';
-import {
-  TextInput,
-  StyleSheet,
-  ScrollView,
-  Alert,
-} from 'react-native';
+import {TextInput, StyleSheet, ScrollView, Alert} from 'react-native';
 import MyButton from '../../components/MyButton';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {COLORS} from '../../assets/colors';
+import Loading from '../../components/Loading';
 import {AuthUserContext} from '../../context/AuthUserProvider';
 
 const SignUpScreen = ({navigation}) => {
@@ -15,16 +11,20 @@ const SignUpScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [phonenumber, setPhonenumber] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const {signUp} = useContext(AuthUserContext);
 
   const handleSignUp = async () => {
+    let msgError = '';
     if (!username || !email || !phonenumber || !password) {
       Alert.alert('Preencha todos os campos', 'Preencha todos os campos');
       return;
     }
+    setLoading(true);
     let user = {username, email, phonenumber};
     msgError = await signUp(user, password);
     if (msgError === 'ok') {
+      setLoading(false);
       console.log('Email de verificação enviado');
       Alert.alert(
         'Cadastro Realizado',
@@ -32,6 +32,7 @@ const SignUpScreen = ({navigation}) => {
       );
       navigation.goBack();
     } else {
+      setLoading(false);
       Alert.alert('Erro', msgError);
     }
   };
@@ -53,6 +54,7 @@ const SignUpScreen = ({navigation}) => {
           value={username}
           onChangeText={t => setUsername(t)}
           onSubmitEditing={() => this.emailTextInput.focus()}
+          blurOnSubmit={false}
           placeholderTextColor="#000"
           autoCapitalize="none"
         />
@@ -66,7 +68,8 @@ const SignUpScreen = ({navigation}) => {
           returnKeyType="next"
           value={email}
           onChangeText={t => setEmail(t)}
-          onEndEditing={() => this.phoneTextInput.focus()}
+          onSubmitEditing={() => this.phoneTextInput.focus()}
+          blurOnSubmit={false}
           placeholderTextColor="#000"
           autoCapitalize="none"
         />
@@ -81,6 +84,7 @@ const SignUpScreen = ({navigation}) => {
           value={phonenumber}
           onChangeText={t => setPhonenumber(t)}
           onSubmitEditing={() => this.passTextInput.focus()}
+          blurOnSubmit={false}
           placeholderTextColor="#000"
         />
         <TextInput
@@ -99,6 +103,7 @@ const SignUpScreen = ({navigation}) => {
         />
         <MyButton title="Cadastrar" onClick={handleSignUp} />
       </ScrollView>
+      {loading && <Loading />}
     </SafeAreaView>
   );
 };

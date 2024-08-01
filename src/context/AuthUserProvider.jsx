@@ -42,7 +42,7 @@ export const AuthUserProvider = ({children}) => {
     }
   };
 
-  const signIn = async (email, pass) => {
+  const signIn = async (email, password) => {
     try {
       await auth().signInWithEmailAndPassword(email, password);
       if (!auth().currentUser.emailVerified) {
@@ -119,7 +119,7 @@ export const AuthUserProvider = ({children}) => {
 
   return (
     <AuthUserContext.Provider
-      value={{user, signUp, signIn, forgotPass, getUserCache}}>
+      value={{user, setUser, signUp, signIn, forgotPass, getUserCache}}>
       {children}
     </AuthUserContext.Provider>
   );
