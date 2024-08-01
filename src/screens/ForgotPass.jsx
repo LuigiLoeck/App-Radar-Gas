@@ -1,41 +1,33 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, TextInput, StyleSheet, Alert} from 'react-native';
 import MyButton from '../components/MyButton';
 import {COLORS} from '../assets/colors';
-import auth from '@react-native-firebase/auth';
+import {AuthUserContext} from '../context/AuthUserProvider';
 
 const ForgotPass = ({navigation}) => {
   const [email, setEmail] = useState('');
+  const {forgotPass} = useContext(AuthUserContext);
 
-  const recover = () => {
+  const recover = async () => {
+    let msgError = '';
     if (email !== '') {
-      auth()
-        .sendPasswordResetEmail(email)
-        .then(() => {
-          Alert.alert(
-            'Email Enviado',
-            'Verifique sua caixa de entrada no email: ' + email,
-            [
-              {
-                text: 'OK',
-                onPress: () => {
-                  navigation.goBack();
-                },
+      msgError = await forgotPass(email);
+      if (msgError === 'ok') {
+        Alert.alert(
+          'Email Enviado',
+          'Verifique sua caixa de entrada no email: ' + email,
+          [
+            {
+              text: 'OK',
+              onPress: () => {
+                navigation.goBack();
               },
-            ],
-          );
-        })
-        .catch(error => {
-          console.log('ForgotPass: recover: ' + error);
-          switch (error.code) {
-            case 'auth/user-not-found':
-              Alert.alert('Usuário Não Encontrado', 'Usuário não cadastrado');
-              break;
-            default:
-              Alert.alert('Erro', 'Erro ao recuperar senha, tente novamente');
-              break;
-          }
-        });
+            },
+          ],
+        );
+      } else {
+        Alert.alert('Erro', msgError);
+      }
     } else {
       Alert.alert('Campo Vazio', 'Preencha o campo de email');
     }

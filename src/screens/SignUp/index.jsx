@@ -1,84 +1,39 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
-  View,
   TextInput,
-  Button,
   StyleSheet,
   ScrollView,
   Alert,
 } from 'react-native';
-import auth from '@react-native-firebase/auth';
 import MyButton from '../../components/MyButton';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {COLORS} from '../../assets/colors';
-import {CommonActions} from '@react-navigation/native';
-import firestore from '@react-native-firebase/firestore';
+import {AuthUserContext} from '../../context/AuthUserProvider';
 
 const SignUpScreen = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [phonenumber, setPhonenumber] = useState('');
   const [password, setPassword] = useState('');
+  const {signUp} = useContext(AuthUserContext);
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     if (!username || !email || !phonenumber || !password) {
       Alert.alert('Preencha todos os campos', 'Preencha todos os campos');
       return;
     }
-    auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        let user = auth().currentUser;
-        firestore()
-          .collection('users')
-          .doc(user.uid)
-          .set({
-            username: username,
-            email: email,
-            phonenumber: phonenumber,
-          })
-          .then(() => {
-            console.log('User added!');
-            user
-              .sendEmailVerification()
-              .then(() => {
-                console.log('Email de verificação enviado');
-                Alert.alert(
-                  'Cadastro Realizado',
-                  'Foi enviado um email de verificação para ' + email + '.',
-                );
-                navigation.dispatch(
-                  CommonActions.reset({
-                    index: 0,
-                    routes: [{name: 'SignIn'}],
-                  }),
-                );
-              })
-              .catch(error => {
-                console.log('Erro ao enviar email de verificação: ' + error);
-              });
-          })
-          .catch(error => {
-            console.log('Erro ao adicionar usuário: ' + error);
-          });
-      })
-      .catch(error => {
-        console.log('SignUp: Cadastro:' + error);
-        switch (error.code) {
-          case 'auth/email-already-in-use':
-            Alert.alert('Email já cadastrado', 'Tente outro email');
-            break;
-          case 'auth/invalid-email':
-            Alert.alert('Email inválido', 'Digite um email válido');
-            break;
-          case 'auth/weak-password':
-            Alert.alert('Senha fraca', 'Digite uma senha mais grande');
-            break;
-          default:
-            Alert.alert('Erro', 'Erro ao cadastrar, tente novamente');
-            break;
-        }
-      });
+    let user = {username, email, phonenumber};
+    msgError = await signUp(user, password);
+    if (msgError === 'ok') {
+      console.log('Email de verificação enviado');
+      Alert.alert(
+        'Cadastro Realizado',
+        'Foi enviado um email de verificação para ' + email + '.',
+      );
+      navigation.goBack();
+    } else {
+      Alert.alert('Erro', msgError);
+    }
   };
 
   return (

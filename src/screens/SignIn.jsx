@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -9,97 +9,41 @@ import {
   Image,
   Alert,
 } from 'react-native';
+import {AuthUserContext} from '../context/AuthUserProvider';
 import MyButton from '../components/MyButton';
 import {COLORS} from '../assets/colors';
-import auth from '@react-native-firebase/auth';
-import {CommonActions} from '@react-navigation/native';
-import EncryptedStorage from 'react-native-encrypted-storage';
-import firestore from '@react-native-firebase/firestore';
 import Loading from '../components/Loading';
 
 const SignIn = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const {signIn} = useContext(AuthUserContext);
 
   const navigateToPage = page => {
     navigation.navigate(page);
   };
 
-  const storeUserCache = async value => {
-    try {
-      value.password = password;
-      const jsonValue = JSON.stringify(value);
-      await EncryptedStorage.setItem('user', jsonValue);
-      setLoading(false);
-      navigation.reset({
-        index: 0,
-        routes: [{name: 'Postos'}],
-      });
-    } catch (error) {
-      console.log('SignIn: erro em storeUserCache', error);
-    }
-  };
-
-  const getUser = () => {
-    firestore()
-      .collection('users')
-      .doc(auth().currentUser.uid)
-      .get()
-      .then(doc => {
-        if (doc.exists) {
-          storeUserCache(doc.data());
-        } else {
-          console.log('No such document!');
-        }
-      })
-      .catch(error => {
-        console.log('SignIn: erro em getUser', error);
-      });
-  };
-
-  const handleSignIn = () => {
-    if (email !== '' && password !== '') {
+  const handleSignIn = async () => {
+    let msgError = '';
+    if (email && password) {
       setLoading(true);
-      auth()
-        .signInWithEmailAndPassword(email, password)
-        .then(() => {
-          if (!auth().currentUser.emailVerified) {
-            Alert.alert(
-              'Email não verificado',
-              'Verifique seu email para continuar',
-            );
-            setLoading(false);
-            return;
-          }
-          getUser();
+      msgError = await signIn(email, password);
+      if (msgError === 'ok'){
+        setLoading(false);
+        navigation.reset({
+          index: 0,
+          routes: [{name: 'AppStack'}],
         })
-        .catch(error => {
-          setLoading(false);
-          console.log('SignIn: login: ' + error);
-          switch (error.code) {
-            case 'auth/invalid-credential':
-            case 'auth/invalid-email':
-            case 'auth/invalid-password':
-              Alert.alert('Tente Novamente', 'Email ou senha inválidos');
-              break;
-            case 'auth/user-disabled':
-              Alert.alert(
-                'Conta Desativada',
-                'Usuário desativado, contate o suporte',
-              );
-              break;
-            default:
-              Alert.alert('Erro', 'Erro ao logar, tente novamente');
-              break;
-          }
-        });
+      } else {
+        setLoading(false);
+        Alert.alert('Erro', msgError);
+      }
     } else {
       Alert.alert('Campos Vazios', 'Preencha todos os campos');
     }
-  };
+  }
 
-  // resolver problema de teclado cobrindo input
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView

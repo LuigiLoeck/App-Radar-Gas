@@ -1,50 +1,19 @@
-import React, {useEffect} from 'react';
-import {View, Text, Image, Alert} from 'react-native';
-import {CommonActions} from '@react-navigation/native';
+import React, {useEffect, useContext} from 'react';
+import {View, Image} from 'react-native';
 import {COLORS} from '../../assets/colors';
-import auth from '@react-native-firebase/auth';
-import EncryptedStorage from 'react-native-encrypted-storage';
+import {AuthUserContext} from '../../context/AuthUserProvider';
 
-const Preload = ({navigation}) => {
-  const getUserCache = async () => {
-    try {
-      const jsonValue = await EncryptedStorage.getItem('user');
-      return jsonValue != null ? JSON.parse(jsonValue) : null;
-    } catch (error) {
-      console.log('Preload: erro em getUserCache', error);
-    }
-  };
+export default Preload = ({navigation}) => {
+  const {getUserCache, signIn} = useContext(AuthUserContext);
 
   const loginUser = async () => {
     const user = await getUserCache();
-    if (user !== null) {
-      auth()
-        .signInWithEmailAndPassword(user.email, user.password)
-        .then(() => {
-          navigation.reset({
-            index: 0,
-            routes: [{name: 'Postos'}],
-          });
-        })
-        .catch(error => {
-          console.log('SignIn: login: ' + error);
-          switch (error.code) {
-            case 'auth/invalid-credential':
-            case 'auth/invalid-email':
-            case 'auth/invalid-password':
-              Alert.alert('Tente Novamente', 'Email ou senha inválidos');
-              break;
-            case 'auth/user-disabled':
-              Alert.alert(
-                'Conta Desativada',
-                'Usuário desativado, contate o suporte',
-              );
-              break;
-            default:
-              Alert.alert('Erro', 'Erro ao logar, tente novamente');
-              break;
-          }
-        });
+
+    if (user && (await signIn(user.email, user.password)) === 'ok') {
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'AppStack'}],
+      });
     } else {
       navigation.reset({
         index: 0,
@@ -72,5 +41,3 @@ const Preload = ({navigation}) => {
     </View>
   );
 };
-
-export default Preload;
