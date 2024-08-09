@@ -6,20 +6,15 @@ import auth from '@react-native-firebase/auth';
 import {AuthUserContext} from '../context/AuthUserProvider';
 import AppStack from './AppStack';
 import AuthStack from './AuthStack';
+import Posto from '../screens/Posto';
+import User from '../screens/User';
+import Bandeira from '../screens/Bandeira';
 import {COLORS} from '../assets/colors';
 import {StatusBar} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
-  //const {user, setUser} = useContext(AuthUserContext);
-
-  // useEffect(() => {
-  //   const subscriber = auth().onAuthStateChanged(authUser => {
-  //     authUser ? setUser(authUser) : setUser(null);
-  //   });
-  //   return subscriber;
-  // }, []);
 
   return (
     <NavigationContainer>
@@ -31,6 +26,9 @@ export default function Navigation() {
         }}>
         <Stack.Screen component={AppStack} name="AppStack" />
         <Stack.Screen component={AuthStack} name="AuthStack" />
+        <Stack.Screen component={Posto} name="Posto" />
+        <Stack.Screen component={User} name="User" />
+        <Stack.Screen component={Bandeira} name="Bandeira" />
       </Stack.Navigator>
     </NavigationContainer>
   );

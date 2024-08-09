@@ -13,12 +13,12 @@ const Postos = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const {postos} = useContext(PostoContext);
 
-  const logOutUser = () => {
-    navigation.reset({
-      index: 0,
-      routes: [{name: 'AuthStack'}],
-    });
-  };
+  // const logOutUser = () => {
+  //   navigation.reset({
+  //     index: 0,
+  //     routes: [{name: 'AuthStack'}],
+  //   });
+  // };
 
   const routeUser = item => {
     console.log('item', item);
@@ -31,10 +31,10 @@ const Postos = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <Text style={styles.text}>Home</Text>
         <LogoutButton logout={logOutUser} />
-      </View>
+      </View> */}
       <FlatList
         data={postos}
         renderItem={renderItem}

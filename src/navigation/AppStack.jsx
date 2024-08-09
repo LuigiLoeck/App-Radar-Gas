@@ -1,27 +1,75 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Postos from '../screens/Postos';
-import Posto from '../screens/Posto';
 import Users from '../screens/Users';
-import User from '../screens/User';
-import Bandeira from '../screens/Bandeira';
 import Bandeiras from '../screens/Bandeiras';
+import {COLORS} from '../assets/colors';
+import LogoutButton from '../components/LogoutButton';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const Stack = createNativeStackNavigator();
+const logOutUser = () => {
+  navigation.reset({
+    index: 0,
+    routes: [{name: 'AuthStack'}],
+  });
+};
+
+const Tab = createBottomTabNavigator();
 export default function AppStack() {
   return (
-    <Stack.Navigator
+    <Tab.Navigator
       initialRouteName="Postos"
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: COLORS.primary,
+        },
+        headerTintColor: COLORS.white,
+        headerRight: () => <LogoutButton logout={logOutUser} />,
       }}>
-      <Stack.Screen name="Postos" component={Postos} />
-      <Stack.Screen name="Posto" component={Posto} />
-      <Stack.Screen name="Users" component={Users} />
-      <Stack.Screen name="User" component={User} />
-      <Stack.Screen name="Bandeira" component={Bandeira} />
-      <Stack.Screen name="Bandeiras" component={Bandeiras} />
-    </Stack.Navigator>
+      <Tab.Screen
+        name="Postos"
+        component={Postos}
+        options={{
+          tabBarLabel: 'Postos',
+          tabBarIcon: ({focused}) => (
+            <Icon
+              name="map-outline"
+              color={focused ? COLORS.primary : COLORS.grey}
+              size={26}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Users"
+        component={Users}
+        options={{
+          tabBarLabel: 'Usuários',
+          tabBarIcon: ({focused}) => (
+            <Icon
+              name="account-outline"
+              color={focused ? COLORS.primary : COLORS.grey}
+              size={26}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Bandeiras"
+        component={Bandeiras}
+        options={{
+          tabBarLabel: 'Bandeiras',
+          tabBarIcon: ({focused}) => (
+            <Icon
+              name="flag-outline"
+              color={focused ? COLORS.primary : COLORS.grey}
+              size={26}
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 }

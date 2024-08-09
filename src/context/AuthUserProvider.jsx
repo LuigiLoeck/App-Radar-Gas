@@ -119,7 +119,15 @@ export const AuthUserProvider = ({children}) => {
 
   return (
     <AuthUserContext.Provider
-      value={{user, setUser, signUp, signIn, forgotPass, getUserCache}}>
+      value={{
+        user,
+        setUser,
+        signUp,
+        signIn,
+        signOut,
+        forgotPass,
+        getUserCache,
+      }}>
       {children}
     </AuthUserContext.Provider>
   );
