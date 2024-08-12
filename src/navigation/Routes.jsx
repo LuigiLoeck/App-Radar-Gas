@@ -15,7 +15,6 @@ import {StatusBar} from 'react-native';
 const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
-
   return (
     <NavigationContainer>
       <StatusBar backgroundColor={COLORS.primary} />
@@ -28,7 +27,6 @@ export default function Navigation() {
         <Stack.Screen component={AuthStack} name="AuthStack" />
         <Stack.Screen component={Posto} name="Posto" />
         <Stack.Screen component={User} name="User" />
-        <Stack.Screen component={Bandeira} name="Bandeira" />
       </Stack.Navigator>
     </NavigationContainer>
   );

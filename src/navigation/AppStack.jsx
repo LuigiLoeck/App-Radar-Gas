@@ -3,7 +3,6 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Postos from '../screens/Postos';
 import Users from '../screens/Users';
-import Bandeiras from '../screens/Bandeiras';
 import {COLORS} from '../assets/colors';
 import LogoutButton from '../components/LogoutButton';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -50,20 +49,6 @@ export default function AppStack() {
           tabBarIcon: ({focused}) => (
             <Icon
               name="account-outline"
-              color={focused ? COLORS.primary : COLORS.grey}
-              size={26}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Bandeiras"
-        component={Bandeiras}
-        options={{
-          tabBarLabel: 'Bandeiras',
-          tabBarIcon: ({focused}) => (
-            <Icon
-              name="flag-outline"
               color={focused ? COLORS.primary : COLORS.grey}
               size={26}
             />
