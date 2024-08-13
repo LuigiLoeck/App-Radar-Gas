@@ -8,7 +8,6 @@ import AppStack from './AppStack';
 import AuthStack from './AuthStack';
 import Posto from '../screens/Posto';
 import User from '../screens/User';
-import Bandeira from '../screens/Bandeira';
 import {COLORS} from '../assets/colors';
 import {StatusBar} from 'react-native';
 

@@ -3,6 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Postos from '../screens/Postos';
 import Users from '../screens/Users';
+import Map from '../screens/Map';
 import {COLORS} from '../assets/colors';
 import LogoutButton from '../components/LogoutButton';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -49,6 +50,20 @@ export default function AppStack() {
           tabBarIcon: ({focused}) => (
             <Icon
               name="account-outline"
+              color={focused ? COLORS.primary : COLORS.grey}
+              size={26}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Map"
+        component={Map}
+        options={{
+          tabBarLabel: 'Mapa',
+          tabBarIcon: ({focused}) => (
+            <Icon
+              name="map-marker-outline"
               color={focused ? COLORS.primary : COLORS.grey}
               size={26}
             />
