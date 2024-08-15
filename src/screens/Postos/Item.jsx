@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   textName: {
     color: COLORS.white,
-    fontSize: 20,
+    fontSize: 16,
   },
   textEmail: {
     color: COLORS.white,

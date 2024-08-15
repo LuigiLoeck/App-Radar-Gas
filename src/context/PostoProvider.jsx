@@ -1,5 +1,6 @@
 import React, {createContext, useState, useEffect} from 'react';
 import firestore from '@react-native-firebase/firestore';
+import postosData from '../assets/postosData.json';
 
 export const PostoContext = createContext({});
 
@@ -36,6 +37,15 @@ export const PostoProvider = ({children}) => {
       console.error('PostoProvider, salvar: ' + e);
       return false;
     }
+    // try {
+    //   for (let i = 0; i < postosData.length; i++) {
+    //     await firestore().collection('postos').add(postosData[i]);
+    //   }
+    //   return true;
+    // } catch (e) {
+    //   console.error('PostoProvider, salvar: ' + e);
+    //   return false;
+    // }
   };
 
   const update = async posto => {

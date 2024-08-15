@@ -83,6 +83,6 @@ const styles = StyleSheet.create({
   flatlist: {
     width: '80%',
     marginTop: 20,
-    maxHeight: '60%',
+    maxHeight: '80%',
   },
 });
