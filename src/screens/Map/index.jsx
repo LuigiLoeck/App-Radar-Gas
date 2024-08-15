@@ -4,6 +4,7 @@ import MapView, {PROVIDER_GOOGLE, Callout, Marker} from 'react-native-maps';
 import {PostoContext} from '../../context/PostoProvider';
 
 import {COLORS} from '../../assets/colors';
+import {color} from '@rneui/base';
 
 const Map = ({navigation}) => {
   const {postos} = useContext(PostoContext);
@@ -30,7 +31,7 @@ const Map = ({navigation}) => {
             <Callout>
               <View style={styles.callout}>
                 <Text style={styles.calloutTitle}>{posto.bandeira}</Text>
-                <Text>{posto.endereco}</Text>
+                <Text style={styles.calloutDesc}>{posto.endereco}</Text>
               </View>
             </Callout>
           </Marker>
@@ -56,5 +57,7 @@ const styles = StyleSheet.create({
   },
   calloutTitle: {
     fontWeight: 'bold',
+    color: '#000',
   },
+  calloutDesc: {color: '#555'},
 });

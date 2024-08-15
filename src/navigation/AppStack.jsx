@@ -8,15 +8,15 @@ import {COLORS} from '../assets/colors';
 import LogoutButton from '../components/LogoutButton';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const logOutUser = () => {
-  navigation.reset({
-    index: 0,
-    routes: [{name: 'AuthStack'}],
-  });
-};
-
 const Tab = createBottomTabNavigator();
-export default function AppStack() {
+export default function AppStack({navigation}) {
+  const logOutUser = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{name: 'AuthStack'}],
+    });
+  };
+
   return (
     <Tab.Navigator
       initialRouteName="Postos"

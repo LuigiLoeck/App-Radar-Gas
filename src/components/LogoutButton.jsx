@@ -7,7 +7,7 @@ const LogoutButton = props => {
   const handleSignOut = async () => {
     try {
       await signOut();
-      props.logoutUser();
+      props.logout();
     } catch (error) {
       console.log('LogoutButton, handleSignOut  error:', error);
     }
