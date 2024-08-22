@@ -25,7 +25,6 @@ export default function Navigation() {
         <Stack.Screen component={AppStack} name="AppStack" />
         <Stack.Screen component={AuthStack} name="AuthStack" />
         <Stack.Screen component={Posto} name="Posto" />
-        <Stack.Screen component={User} name="User" />
       </Stack.Navigator>
     </NavigationContainer>
   );

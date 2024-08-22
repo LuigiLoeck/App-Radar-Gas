@@ -1,13 +1,23 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import MapView, {PROVIDER_GOOGLE, Callout, Marker} from 'react-native-maps';
+import {View, Text, StyleSheet, Image} from 'react-native';
+import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {PostoContext} from '../../context/PostoProvider';
 
 import {COLORS} from '../../assets/colors';
-import {color} from '@rneui/base';
 
 const Map = ({navigation}) => {
   const {postos} = useContext(PostoContext);
+  const bandeiras = {
+    Azeredo: require('../../assets/images/Azeredo.png'),
+    Coqueiro: require('../../assets/images/Coqueiro.png'),
+    Ipiranga: require('../../assets/images/Ipiranga.png'),
+    Petrobras: require('../../assets/images/Petrobras.png'),
+    Rodoil: require('../../assets/images/Rodoil.png'),
+    Shell: require('../../assets/images/Shell.png'),
+    Sim: require('../../assets/images/Sim.png'),
+    BandeiraBranca: require('../../assets/images/BandeiraBranca.png'),
+  };
+
   return (
     <View style={styles.container}>
       <MapView
@@ -19,21 +29,32 @@ const Map = ({navigation}) => {
           latitudeDelta: 0.015,
           longitudeDelta: 0.0121,
         }}>
-        {postos.map(posto => (
+        {postos.map((posto, index) => (
           <Marker
-            key={posto.id}
+            key={index}
             coordinate={{
               latitude: posto.cordY,
               longitude: posto.cordX,
             }}
+            tracksViewChanges={false}
             title={posto.nome}
             description={posto.endereco}>
-            <Callout>
-              <View style={styles.callout}>
-                <Text style={styles.calloutTitle}>{posto.bandeira}</Text>
-                <Text style={styles.calloutDesc}>{posto.endereco}</Text>
+            <View style={styles.markerContainer}>
+              <View style={styles.markerBox}>
+                <Text style={styles.markerText}>
+                  {posto.precos.gasolinaComum.toFixed(2)}
+                </Text>
+                <Image
+                  source={
+                    bandeiras[posto.bandeira]
+                      ? bandeiras[posto.bandeira]
+                      : bandeiras.BandeiraBranca
+                  }
+                  style={styles.markerImage}
+                />
               </View>
-            </Callout>
+              <View style={styles.markerTriangle} />
+            </View>
           </Marker>
         ))}
       </MapView>
@@ -51,13 +72,39 @@ const styles = StyleSheet.create({
   map: {
     flex: 1,
   },
-  callout: {
-    width: 150,
-    padding: 5,
+  markerContainer: {
+    alignItems: 'center',
   },
-  calloutTitle: {
-    fontWeight: 'bold',
-    color: '#000',
+  markerBox: {
+    height: 35,
+    paddingHorizontal: 5,
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 5,
+    borderColor: COLORS.gray,
+    borderWidth: 1,
   },
-  calloutDesc: {color: '#555'},
+  markerImage: {
+    width: 25,
+    height: 25,
+    resizeMode: 'contain',
+    borderRadius: 12,
+  },
+  markerText: {
+    fontSize: 16,
+    color: COLORS.black,
+  },
+  markerTriangle: {
+    width: 0,
+    height: 0,
+    borderLeftWidth: 6,
+    borderRightWidth: 6,
+    borderTopWidth: 10,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderTopColor: COLORS.gray,
+  },
 });

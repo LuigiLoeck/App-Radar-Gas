@@ -9,7 +9,15 @@
     "cidade": "Pelotas",
     "bandeira": "Ipiranga",
     "cordY": -31.760765,
-    "cordX": -52.360935
+    "cordX": -52.360935,
+    "nota": 4.7,
+    "nmrNotas": 263,
+    "precos": {
+      "gasolinaComum": 6.157,
+      "gasolinaAditivada": 7.631,
+      "etanol": 5.549,
+      "diesel": 5.891
+    }
   },
   {
     "nome": "Comercio De Combustiveis Avenida Ltda",
@@ -19,9 +27,17 @@
     "cep": 96065000,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Bandeira Branca",
+    "bandeira": "Ipiranga",
     "cordY": -31.70127583,
-    "cordX": -52.33970972
+    "cordX": -52.33970972,
+    "nota": 4.8,
+    "nmrNotas": 406,
+    "precos": {
+      "gasolinaComum": 5.837,
+      "gasolinaAditivada": 7.395,
+      "etanol": 4.408,
+      "diesel": 6.498
+    }
   },
   {
     "nome": "Comercial De Combustiveis Cidra Ltda",
@@ -33,7 +49,15 @@
     "cidade": "Pelotas",
     "bandeira": "Bandeira Branca",
     "cordY": -31.76203,
-    "cordX": -52.33708111
+    "cordX": -52.33708111,
+    "nota": 4.8,
+    "nmrNotas": 349,
+    "precos": {
+      "gasolinaComum": 5.985,
+      "gasolinaAditivada": 6.276,
+      "etanol": 4.586,
+      "diesel": 5.645
+    }
   },
   {
     "nome": "Roger Souza Da Silva",
@@ -45,7 +69,15 @@
     "cidade": "Pelotas",
     "bandeira": "Ipiranga",
     "cordY": -31.77326167,
-    "cordX": -52.33530167
+    "cordX": -52.33530167,
+    "nota": 4.8,
+    "nmrNotas": 205,
+    "precos": {
+      "gasolinaComum": 6.564,
+      "gasolinaAditivada": 7.314,
+      "etanol": 5.302,
+      "diesel": 5.628
+    }
   },
   {
     "nome": "Luiz Ermindo Timm Ltda",
@@ -55,9 +87,17 @@
     "cep": 96055035,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Bandeira Branca",
+    "bandeira": "Corrientes",
     "cordY": -31.72421972,
-    "cordX": -52.34203306
+    "cordX": -52.34203306,
+    "nota": 3.3,
+    "nmrNotas": 260,
+    "precos": {
+      "gasolinaComum": 6.044,
+      "gasolinaAditivada": 5.997,
+      "etanol": 4.844,
+      "diesel": 5.874
+    }
   },
   {
     "nome": "Posto Da Republica Distrib. Derivados De Petroleo Ltda",
@@ -67,9 +107,17 @@
     "cep": 96080000,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Raizen",
+    "bandeira": "Shell",
     "cordY": -31.73885139,
-    "cordX": -52.32773833
+    "cordX": -52.32773833,
+    "nota": 3.4,
+    "nmrNotas": 98,
+    "precos": {
+      "gasolinaComum": 6.255,
+      "gasolinaAditivada": 7.904,
+      "etanol": 4.649,
+      "diesel": 6.381
+    }
   },
   {
     "nome": "Orlando Martins Da Rosa & Filhos Ltda.",
@@ -81,7 +129,15 @@
     "cidade": "Pelotas",
     "bandeira": "Rodoil",
     "cordY": -31.75670528,
-    "cordX": -52.34105861
+    "cordX": -52.34105861,
+    "nota": 4.8,
+    "nmrNotas": 291,
+    "precos": {
+      "gasolinaComum": 5.619,
+      "gasolinaAditivada": 6.655,
+      "etanol": 5.376,
+      "diesel": 6.43
+    }
   },
   {
     "nome": "Abastecedora Mania Ltda",
@@ -93,7 +149,15 @@
     "cidade": "Pelotas",
     "bandeira": "Charrua",
     "cordY": -31.74863889,
-    "cordX": -52.39549222
+    "cordX": -52.39549222,
+    "nota": 4.8,
+    "nmrNotas": 463,
+    "precos": {
+      "gasolinaComum": 6.359,
+      "gasolinaAditivada": 7.301,
+      "etanol": 5.057,
+      "diesel": 5.439
+    }
   },
   {
     "nome": "Distribuidora De Combustiveis Savar Ltda",
@@ -103,9 +167,17 @@
     "cep": 96055035,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Vibra",
+    "bandeira": "Petrobras",
     "cordY": -31.73603944,
-    "cordX": -52.34476389
+    "cordX": -52.34476389,
+    "nota": 4.8,
+    "nmrNotas": 197,
+    "precos": {
+      "gasolinaComum": 6.266,
+      "gasolinaAditivada": 6.54,
+      "etanol": 5.387,
+      "diesel": 6.415
+    }
   },
   {
     "nome": "Sim Rede De Postos Ltda",
@@ -115,9 +187,17 @@
     "cep": 96055000,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Vibra",
+    "bandeira": "Sim",
     "cordY": -31.7307675,
-    "cordX": -52.34347667
+    "cordX": -52.34347667,
+    "nota": 4.3,
+    "nmrNotas": 103,
+    "precos": {
+      "gasolinaComum": 6.053,
+      "gasolinaAditivada": 6.604,
+      "etanol": 4.61,
+      "diesel": 5.469
+    }
   },
   {
     "nome": "Sim Rede De Postos Ltda",
@@ -127,9 +207,17 @@
     "cep": 96085000,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Vibra",
+    "bandeira": "Sim",
     "cordY": -31.757615,
-    "cordX": -52.30748
+    "cordX": -52.30748,
+    "nota": 3.3,
+    "nmrNotas": 69,
+    "precos": {
+      "gasolinaComum": 6.092,
+      "gasolinaAditivada": 7.597,
+      "etanol": 5.391,
+      "diesel": 6.48
+    }
   },
   {
     "nome": "Sim Rede De Postos Ltda",
@@ -139,9 +227,17 @@
     "cep": 96015210,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Vibra",
+    "bandeira": "Sim",
     "cordY": -31.75612778,
-    "cordX": -52.35434139
+    "cordX": -52.35434139,
+    "nota": 4.2,
+    "nmrNotas": 423,
+    "precos": {
+      "gasolinaComum": 5.89,
+      "gasolinaAditivada": 7.349,
+      "etanol": 5.175,
+      "diesel": 6.097
+    }
   },
   {
     "nome": "Sim Rede De Postos Ltda",
@@ -151,9 +247,17 @@
     "cep": 96020260,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Vibra",
+    "bandeira": "Sim",
     "cordY": -31.74524583,
-    "cordX": -52.33610361
+    "cordX": -52.33610361,
+    "nota": 4.3,
+    "nmrNotas": 310,
+    "precos": {
+      "gasolinaComum": 5.976,
+      "gasolinaAditivada": 7.026,
+      "etanol": 4.675,
+      "diesel": 5.577
+    }
   },
   {
     "nome": "Sim Rede De Postos Ltda",
@@ -163,9 +267,17 @@
     "cep": 96080000,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Raizen",
+    "bandeira": "Sim",
     "cordY": -31.74591833,
-    "cordX": -52.32840667
+    "cordX": -52.32840667,
+    "nota": 3.8,
+    "nmrNotas": 93,
+    "precos": {
+      "gasolinaComum": 6.438,
+      "gasolinaAditivada": 7.959,
+      "etanol": 4.815,
+      "diesel": 6.273
+    }
   },
   {
     "nome": "Sim Rede De Postos Ltda",
@@ -175,9 +287,17 @@
     "cep": 96050970,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Raizen",
+    "bandeira": "Sim",
     "cordY": -31.72053389,
-    "cordX": -52.34321361
+    "cordX": -52.34321361,
+    "nota": 3.3,
+    "nmrNotas": 148,
+    "precos": {
+      "gasolinaComum": 6.051,
+      "gasolinaAditivada": 7.226,
+      "etanol": 4.326,
+      "diesel": 5.672
+    }
   },
   {
     "nome": "Sim Rede De Postos Ltda",
@@ -187,21 +307,37 @@
     "cep": 96085000,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Vibra",
+    "bandeira": "Sim",
     "cordY": -31.75893667,
-    "cordX": -52.3179
+    "cordX": -52.3179,
+    "nota": 4.3,
+    "nmrNotas": 421,
+    "precos": {
+      "gasolinaComum": 5.705,
+      "gasolinaAditivada": 6.306,
+      "etanol": 4.836,
+      "diesel": 6.536
+    }
   },
   {
-    "nome": "Partners Air Servi\u00e3\u2021os E Com\u00e3\u2030rcio De Produtos De Petr\u00e3\u201cleo Ltda.",
+    "nome": "Partners Air Serviã‡os E Comã‰rcio De Produtos De Petrã“leo Ltda.",
     "cnpj": 7803085000608,
     "endereco": "Rua Zeferino Da Costa, 1300",
-    "bairro": "Tr\u00e3\u0161s Vendas",
+    "bairro": "Trãšs Vendas",
     "cep": 96070480,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Vibra",
+    "bandeira": "Petrobras",
     "cordY": -31.71618528,
-    "cordX": -52.33180917
+    "cordX": -52.33180917,
+    "nota": 4.8,
+    "nmrNotas": 130,
+    "precos": {
+      "gasolinaComum": 5.756,
+      "gasolinaAditivada": 7.88,
+      "etanol": 4.462,
+      "diesel": 6.027
+    }
   },
   {
     "nome": "Princesa Comercio De Combustiveis Ltda - Me",
@@ -213,19 +349,35 @@
     "cidade": "Pelotas",
     "bandeira": "Ipiranga",
     "cordY": -31.63868472,
-    "cordX": -52.33465833
+    "cordX": -52.33465833,
+    "nota": 4.6,
+    "nmrNotas": 325,
+    "precos": {
+      "gasolinaComum": 5.997,
+      "gasolinaAditivada": 7.071,
+      "etanol": 4.778,
+      "diesel": 5.771
+    }
   },
   {
     "nome": "Tais Perleberg Kommling",
     "cnpj": 8055031000151,
-    "endereco": "Colonia Py Crespo, S/n\u00e2\u00ba",
-    "bairro": "3\u00e2\u00ba Distrito",
+    "endereco": "Colonia Py Crespo, S/nâº",
+    "bairro": "3âº Distrito",
     "cep": 96105000,
     "uf": "RS",
     "cidade": "Pelotas",
     "bandeira": "Bandeira Branca",
     "cordY": -31.514455,
-    "cordX": -52.29422333
+    "cordX": -52.29422333,
+    "nota": 3.8,
+    "nmrNotas": 400,
+    "precos": {
+      "gasolinaComum": 6.519,
+      "gasolinaAditivada": 7.927,
+      "etanol": 4.257,
+      "diesel": 5.393
+    }
   },
   {
     "nome": "Abastecedora De Combustiveis Leao S.a.",
@@ -237,7 +389,15 @@
     "cidade": "Pelotas",
     "bandeira": "Rodoil",
     "cordY": -31.74550028,
-    "cordX": -52.3775775
+    "cordX": -52.3775775,
+    "nota": 4.2,
+    "nmrNotas": 274,
+    "precos": {
+      "gasolinaComum": 5.682,
+      "gasolinaAditivada": 5.985,
+      "etanol": 4.903,
+      "diesel": 6.353
+    }
   },
   {
     "nome": "Abastecedora De Combustiveis Leao S.a.",
@@ -249,7 +409,15 @@
     "cidade": "Pelotas",
     "bandeira": "Rodoil",
     "cordY": -31.70682667,
-    "cordX": -52.32629333
+    "cordX": -52.32629333,
+    "nota": 4.7,
+    "nmrNotas": 103,
+    "precos": {
+      "gasolinaComum": 6.543,
+      "gasolinaAditivada": 6.761,
+      "etanol": 4.465,
+      "diesel": 6.508
+    }
   },
   {
     "nome": "Abastecedora De Combustiveis Leao S.a.",
@@ -261,7 +429,15 @@
     "cidade": "Pelotas",
     "bandeira": "Rodoil",
     "cordY": -31.74165,
-    "cordX": -52.36453861
+    "cordX": -52.36453861,
+    "nota": 4.3,
+    "nmrNotas": 205,
+    "precos": {
+      "gasolinaComum": 6.61,
+      "gasolinaAditivada": 7.219,
+      "etanol": 5.155,
+      "diesel": 6.002
+    }
   },
   {
     "nome": "Abastecedora De Combustiveis Leao S.a.",
@@ -273,7 +449,15 @@
     "cidade": "Pelotas",
     "bandeira": "Rodoil",
     "cordY": -31.77000472,
-    "cordX": -52.33183
+    "cordX": -52.33183,
+    "nota": 3.2,
+    "nmrNotas": 47,
+    "precos": {
+      "gasolinaComum": 6.598,
+      "gasolinaAditivada": 6.072,
+      "etanol": 4.118,
+      "diesel": 6.509
+    }
   },
   {
     "nome": "Comercio De Combustiveis Jf & Filhos Ltda",
@@ -285,7 +469,15 @@
     "cidade": "Pelotas",
     "bandeira": "Bandeira Branca",
     "cordY": -31.7630775,
-    "cordX": -52.33032306
+    "cordX": -52.33032306,
+    "nota": 3.4,
+    "nmrNotas": 410,
+    "precos": {
+      "gasolinaComum": 5.672,
+      "gasolinaAditivada": 6.12,
+      "etanol": 4.786,
+      "diesel": 5.33
+    }
   },
   {
     "nome": "Abastecedora De Combustiveis Roguil Ltda",
@@ -295,9 +487,17 @@
     "cep": 96050500,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Vibra",
+    "bandeira": "Petrobras",
     "cordY": -31.69541389,
-    "cordX": -52.42421028
+    "cordX": -52.42421028,
+    "nota": 3.5,
+    "nmrNotas": 393,
+    "precos": {
+      "gasolinaComum": 6.635,
+      "gasolinaAditivada": 6.222,
+      "etanol": 4.323,
+      "diesel": 5.456
+    }
   },
   {
     "nome": "Abastecedora De Combustiveis Roguil Ltda",
@@ -309,7 +509,15 @@
     "cidade": "Pelotas",
     "bandeira": "Bandeira Branca",
     "cordY": -31.760245,
-    "cordX": -52.33458333
+    "cordX": -52.33458333,
+    "nota": 4.1,
+    "nmrNotas": 39,
+    "precos": {
+      "gasolinaComum": 6.236,
+      "gasolinaAditivada": 7.191,
+      "etanol": 5.448,
+      "diesel": 5.625
+    }
   },
   {
     "nome": "Vighor Empreendimentos Ltda",
@@ -319,9 +527,17 @@
     "cep": 96080000,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Vibra",
+    "bandeira": "Petrobras",
     "cordY": -31.750915,
-    "cordX": -52.32873333
+    "cordX": -52.32873333,
+    "nota": 3.1,
+    "nmrNotas": 217,
+    "precos": {
+      "gasolinaComum": 6.197,
+      "gasolinaAditivada": 6.3,
+      "etanol": 5.296,
+      "diesel": 6.13
+    }
   },
   {
     "nome": "Abastecedora De Combustiveis Bonzao Ltda",
@@ -331,9 +547,17 @@
     "cep": 96085470,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Vibra",
+    "bandeira": "Petrobras",
     "cordY": -31.74889,
-    "cordX": -52.29653333
+    "cordX": -52.29653333,
+    "nota": 4.2,
+    "nmrNotas": 342,
+    "precos": {
+      "gasolinaComum": 5.945,
+      "gasolinaAditivada": 7.821,
+      "etanol": 4.752,
+      "diesel": 5.414
+    }
   },
   {
     "nome": "H.v.r. Abastecedora De Combustiveis Ltda",
@@ -345,7 +569,15 @@
     "cidade": "Pelotas",
     "bandeira": "Bandeira Branca",
     "cordY": -31.53859167,
-    "cordX": -52.46623528
+    "cordX": -52.46623528,
+    "nota": 4.7,
+    "nmrNotas": 307,
+    "precos": {
+      "gasolinaComum": 6.062,
+      "gasolinaAditivada": 6.525,
+      "etanol": 5.025,
+      "diesel": 5.469
+    }
   },
   {
     "nome": "Dli Comercio De Combustiveis Ltda",
@@ -357,7 +589,15 @@
     "cidade": "Pelotas",
     "bandeira": "Rodoil",
     "cordY": -31.7645975,
-    "cordX": -52.34798694
+    "cordX": -52.34798694,
+    "nota": 4.2,
+    "nmrNotas": 214,
+    "precos": {
+      "gasolinaComum": 6.151,
+      "gasolinaAditivada": 7.935,
+      "etanol": 5.363,
+      "diesel": 5.538
+    }
   },
   {
     "nome": "Emcar Comercio De Combustiveis Ltda",
@@ -367,9 +607,17 @@
     "cep": 96060290,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Bandeira Branca",
+    "bandeira": "Ipiranga",
     "cordY": -31.73475833,
-    "cordX": -52.323725
+    "cordX": -52.323725,
+    "nota": 4.3,
+    "nmrNotas": 143,
+    "precos": {
+      "gasolinaComum": 5.817,
+      "gasolinaAditivada": 7.74,
+      "etanol": 4.109,
+      "diesel": 6.537
+    }
   },
   {
     "nome": "Rita De Cassia Oliveira Da Rosa Eireli",
@@ -381,7 +629,15 @@
     "cidade": "Pelotas",
     "bandeira": "Rodoil",
     "cordY": -31.75368167,
-    "cordX": -52.31549333
+    "cordX": -52.31549333,
+    "nota": 3.3,
+    "nmrNotas": 119,
+    "precos": {
+      "gasolinaComum": 5.709,
+      "gasolinaAditivada": 5.915,
+      "etanol": 5.572,
+      "diesel": 6.16
+    }
   },
   {
     "nome": "Abastecedora De Combustiveis Domingos De Almeida Ltda",
@@ -393,7 +649,15 @@
     "cidade": "Pelotas",
     "bandeira": "Bandeira Branca",
     "cordY": -31.75051333,
-    "cordX": -52.30017167
+    "cordX": -52.30017167,
+    "nota": 4.4,
+    "nmrNotas": 357,
+    "precos": {
+      "gasolinaComum": 5.879,
+      "gasolinaAditivada": 8.06,
+      "etanol": 5.404,
+      "diesel": 6.02
+    }
   },
   {
     "nome": "Posto 25 De Julho Ltda",
@@ -405,7 +669,15 @@
     "cidade": "Pelotas",
     "bandeira": "Rodoil",
     "cordY": -31.72445889,
-    "cordX": -52.35571972
+    "cordX": -52.35571972,
+    "nota": 3.2,
+    "nmrNotas": 137,
+    "precos": {
+      "gasolinaComum": 6.398,
+      "gasolinaAditivada": 6.916,
+      "etanol": 5.125,
+      "diesel": 5.721
+    }
   },
   {
     "nome": "Corrientes Comercio De Combustiveis Ltda.",
@@ -415,9 +687,17 @@
     "cep": 96070560,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Bandeira Branca",
+    "bandeira": "Corrientes",
     "cordY": -31.47670361,
-    "cordX": -52.21337583
+    "cordX": -52.21337583,
+    "nota": 4.2,
+    "nmrNotas": 40,
+    "precos": {
+      "gasolinaComum": 6.603,
+      "gasolinaAditivada": 7.083,
+      "etanol": 4.395,
+      "diesel": 5.456
+    }
   },
   {
     "nome": "Corrientes Comercio De Combustiveis Ltda.",
@@ -427,9 +707,17 @@
     "cep": 96090590,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Bandeira Branca",
+    "bandeira": "Corrientes",
     "cordY": -31.76207833,
-    "cordX": -52.241925
+    "cordX": -52.241925,
+    "nota": 5.0,
+    "nmrNotas": 387,
+    "precos": {
+      "gasolinaComum": 6.373,
+      "gasolinaAditivada": 7.678,
+      "etanol": 4.755,
+      "diesel": 5.624
+    }
   },
   {
     "nome": "Corrientes Comercio De Combustiveis Ltda.",
@@ -439,9 +727,17 @@
     "cep": 96065040,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Bandeira Branca",
+    "bandeira": "Corrientes",
     "cordY": -31.71340583,
-    "cordX": -52.34191056
+    "cordX": -52.34191056,
+    "nota": 3.7,
+    "nmrNotas": 250,
+    "precos": {
+      "gasolinaComum": 6.534,
+      "gasolinaAditivada": 6.794,
+      "etanol": 4.698,
+      "diesel": 5.665
+    }
   },
   {
     "nome": "Abastecedora Abm Ltda",
@@ -453,7 +749,15 @@
     "cidade": "Pelotas",
     "bandeira": "Bandeira Branca",
     "cordY": -31.71998806,
-    "cordX": -52.37943667
+    "cordX": -52.37943667,
+    "nota": 4.4,
+    "nmrNotas": 159,
+    "precos": {
+      "gasolinaComum": 5.88,
+      "gasolinaAditivada": 6.974,
+      "etanol": 4.222,
+      "diesel": 6.328
+    }
   },
   {
     "nome": "Abastecedora Abm Ltda",
@@ -465,7 +769,15 @@
     "cidade": "Pelotas",
     "bandeira": "Bandeira Branca",
     "cordY": -31.70429111,
-    "cordX": -52.40814639
+    "cordX": -52.40814639,
+    "nota": 4.0,
+    "nmrNotas": 418,
+    "precos": {
+      "gasolinaComum": 6.619,
+      "gasolinaAditivada": 7.285,
+      "etanol": 4.532,
+      "diesel": 6.169
+    }
   },
   {
     "nome": "H.lang Filho Comercio,representacoes E Transportes Ltda",
@@ -477,7 +789,15 @@
     "cidade": "Pelotas",
     "bandeira": "Ipiranga",
     "cordY": -31.75964333,
-    "cordX": -52.25164056
+    "cordX": -52.25164056,
+    "nota": 3.8,
+    "nmrNotas": 94,
+    "precos": {
+      "gasolinaComum": 5.854,
+      "gasolinaAditivada": 6.505,
+      "etanol": 5.177,
+      "diesel": 6.408
+    }
   },
   {
     "nome": "H.lang Filho Comercio,representacoes E Transportes Ltda",
@@ -489,7 +809,15 @@
     "cidade": "Pelotas",
     "bandeira": "Ipiranga",
     "cordY": -31.76027472,
-    "cordX": -52.33649222
+    "cordX": -52.33649222,
+    "nota": 3.1,
+    "nmrNotas": 231,
+    "precos": {
+      "gasolinaComum": 6.108,
+      "gasolinaAditivada": 7.536,
+      "etanol": 4.431,
+      "diesel": 5.812
+    }
   },
   {
     "nome": "H.lang Filho Comercio,representacoes E Transportes Ltda",
@@ -501,7 +829,15 @@
     "cidade": "Pelotas",
     "bandeira": "Ipiranga",
     "cordY": -31.77441917,
-    "cordX": -52.35300139
+    "cordX": -52.35300139,
+    "nota": 3.5,
+    "nmrNotas": 113,
+    "precos": {
+      "gasolinaComum": 5.889,
+      "gasolinaAditivada": 7.24,
+      "etanol": 4.7,
+      "diesel": 6.019
+    }
   },
   {
     "nome": "H.lang Filho Comercio,representacoes E Transportes Ltda",
@@ -513,7 +849,15 @@
     "cidade": "Pelotas",
     "bandeira": "Ipiranga",
     "cordY": -31.76070167,
-    "cordX": -52.33992583
+    "cordX": -52.33992583,
+    "nota": 4.1,
+    "nmrNotas": 159,
+    "precos": {
+      "gasolinaComum": 6.672,
+      "gasolinaAditivada": 7.05,
+      "etanol": 5.356,
+      "diesel": 6.251
+    }
   },
   {
     "nome": "Abastecedora Paulo Moreira Ltda",
@@ -523,9 +867,17 @@
     "cep": 96055035,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Raizen",
+    "bandeira": "Shell",
     "cordY": -31.73987944,
-    "cordX": -52.34415611
+    "cordX": -52.34415611,
+    "nota": 3.5,
+    "nmrNotas": 138,
+    "precos": {
+      "gasolinaComum": 6.132,
+      "gasolinaAditivada": 7.119,
+      "etanol": 5.486,
+      "diesel": 6.134
+    }
   },
   {
     "nome": "Irmaos Cortez Ltda",
@@ -535,9 +887,17 @@
     "cep": 96030003,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Vibra",
+    "bandeira": "Petrobras",
     "cordY": -31.75409806,
-    "cordX": -52.39260417
+    "cordX": -52.39260417,
+    "nota": 4.3,
+    "nmrNotas": 70,
+    "precos": {
+      "gasolinaComum": 6.179,
+      "gasolinaAditivada": 6.347,
+      "etanol": 5.495,
+      "diesel": 5.711
+    }
   },
   {
     "nome": "Comercial Buffon Combustiveis E Transportes Limitada",
@@ -547,9 +907,17 @@
     "cep": 96020220,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Vibra",
+    "bandeira": "Petrobras",
     "cordY": -31.76770639,
-    "cordX": -52.34465417
+    "cordX": -52.34465417,
+    "nota": 5.0,
+    "nmrNotas": 274,
+    "precos": {
+      "gasolinaComum": 6.57,
+      "gasolinaAditivada": 6.71,
+      "etanol": 4.172,
+      "diesel": 6.564
+    }
   },
   {
     "nome": "Comercial Buffon Combustiveis E Transportes Limitada",
@@ -559,9 +927,17 @@
     "cep": 96015360,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Vibra",
+    "bandeira": "Petrobras",
     "cordY": -31.76483528,
-    "cordX": -52.35338667
+    "cordX": -52.35338667,
+    "nota": 4.7,
+    "nmrNotas": 94,
+    "precos": {
+      "gasolinaComum": 6.053,
+      "gasolinaAditivada": 7.846,
+      "etanol": 4.792,
+      "diesel": 5.558
+    }
   },
   {
     "nome": "Comercial Buffon Combustiveis E Transportes Limitada",
@@ -571,9 +947,17 @@
     "cep": 96015360,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Vibra",
+    "bandeira": "Petrobras",
     "cordY": -31.76528583,
-    "cordX": -52.3539675
+    "cordX": -52.3539675,
+    "nota": 3.1,
+    "nmrNotas": 141,
+    "precos": {
+      "gasolinaComum": 6.494,
+      "gasolinaAditivada": 6.898,
+      "etanol": 4.395,
+      "diesel": 5.802
+    }
   },
   {
     "nome": "Comercial Buffon Combustiveis E Transportes Limitada",
@@ -585,7 +969,15 @@
     "cidade": "Pelotas",
     "bandeira": "Ipiranga",
     "cordY": -31.75567528,
-    "cordX": -52.33837056
+    "cordX": -52.33837056,
+    "nota": 4.6,
+    "nmrNotas": 338,
+    "precos": {
+      "gasolinaComum": 6.049,
+      "gasolinaAditivada": 7.299,
+      "etanol": 4.397,
+      "diesel": 5.999
+    }
   },
   {
     "nome": "Posto Azeredo Elgo Ltda",
@@ -595,9 +987,17 @@
     "cep": 96080710,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Charrua",
+    "bandeira": "Azeredo",
     "cordY": -31.74449417,
-    "cordX": -52.31965389
+    "cordX": -52.31965389,
+    "nota": 4.2,
+    "nmrNotas": 247,
+    "precos": {
+      "gasolinaComum": 6.503,
+      "gasolinaAditivada": 6.143,
+      "etanol": 4.346,
+      "diesel": 6.355
+    }
   },
   {
     "nome": "Posto Azeredo Elgo Ltda",
@@ -607,9 +1007,17 @@
     "cep": 96083000,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Bandeira Branca",
+    "bandeira": "Azeredo",
     "cordY": -31.75531639,
-    "cordX": -52.27364806
+    "cordX": -52.27364806,
+    "nota": 3.5,
+    "nmrNotas": 58,
+    "precos": {
+      "gasolinaComum": 6.065,
+      "gasolinaAditivada": 7.989,
+      "etanol": 5.052,
+      "diesel": 6.549
+    }
   },
   {
     "nome": "Posto Azeredo Elgo Ltda",
@@ -619,9 +1027,17 @@
     "cep": 96065420,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Raizen",
+    "bandeira": "Azeredo",
     "cordY": -31.72255611,
-    "cordX": -52.35379056
+    "cordX": -52.35379056,
+    "nota": 4.3,
+    "nmrNotas": 383,
+    "precos": {
+      "gasolinaComum": 5.611,
+      "gasolinaAditivada": 6.36,
+      "etanol": 4.799,
+      "diesel": 6.187
+    }
   },
   {
     "nome": "Posto Azeredo Elgo Ltda",
@@ -631,9 +1047,17 @@
     "cep": 96020380,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Vibra",
+    "bandeira": "Azeredo",
     "cordY": -31.752515,
-    "cordX": -52.34050694
+    "cordX": -52.34050694,
+    "nota": 4.1,
+    "nmrNotas": 72,
+    "precos": {
+      "gasolinaComum": 5.882,
+      "gasolinaAditivada": 6.656,
+      "etanol": 4.981,
+      "diesel": 6.022
+    }
   },
   {
     "nome": "Posto Azeredo Elgo Ltda",
@@ -643,9 +1067,17 @@
     "cep": 96015560,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Bandeira Branca",
+    "bandeira": "Azeredo",
     "cordY": -31.76178778,
-    "cordX": -52.33563667
+    "cordX": -52.33563667,
+    "nota": 4.2,
+    "nmrNotas": 275,
+    "precos": {
+      "gasolinaComum": 6.42,
+      "gasolinaAditivada": 6.4,
+      "etanol": 4.796,
+      "diesel": 5.649
+    }
   },
   {
     "nome": "Posto Azeredo Elgo Ltda",
@@ -655,9 +1087,17 @@
     "cep": 96020340,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Bandeira Branca",
+    "bandeira": "Azeredo",
     "cordY": -31.75016167,
-    "cordX": -52.34013972
+    "cordX": -52.34013972,
+    "nota": 3.7,
+    "nmrNotas": 399,
+    "precos": {
+      "gasolinaComum": 6.322,
+      "gasolinaAditivada": 8.073,
+      "etanol": 4.983,
+      "diesel": 5.32
+    }
   },
   {
     "nome": "Posto Azeredo Elgo Ltda",
@@ -667,9 +1107,17 @@
     "cep": 96090840,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Bandeira Branca",
+    "bandeira": "Azeredo",
     "cordY": -31.75258806,
-    "cordX": -52.24325806
+    "cordX": -52.24325806,
+    "nota": 4.9,
+    "nmrNotas": 498,
+    "precos": {
+      "gasolinaComum": 5.742,
+      "gasolinaAditivada": 7.724,
+      "etanol": 4.37,
+      "diesel": 6.037
+    }
   },
   {
     "nome": "Elaina Hartwig Drawanz",
@@ -681,7 +1129,15 @@
     "cidade": "Pelotas",
     "bandeira": "Bandeira Branca",
     "cordY": -31.56295444,
-    "cordX": -52.39837583
+    "cordX": -52.39837583,
+    "nota": 4.5,
+    "nmrNotas": 302,
+    "precos": {
+      "gasolinaComum": 6.038,
+      "gasolinaAditivada": 6.101,
+      "etanol": 4.928,
+      "diesel": 5.382
+    }
   },
   {
     "nome": "Tania Beatriz Prestes Holz",
@@ -693,7 +1149,15 @@
     "cidade": "Pelotas",
     "bandeira": "Bandeira Branca",
     "cordY": -31.52904694,
-    "cordX": -52.33586972
+    "cordX": -52.33586972,
+    "nota": 3.9,
+    "nmrNotas": 123,
+    "precos": {
+      "gasolinaComum": 6.699,
+      "gasolinaAditivada": 7.335,
+      "etanol": 4.752,
+      "diesel": 5.654
+    }
   },
   {
     "nome": "Coqueiro Combustiveis E Servicos Ltda",
@@ -703,9 +1167,17 @@
     "cep": 96020480,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Vibra",
+    "bandeira": "Coqueiro",
     "cordY": -31.74629056,
-    "cordX": -52.34436028
+    "cordX": -52.34436028,
+    "nota": 4.0,
+    "nmrNotas": 208,
+    "precos": {
+      "gasolinaComum": 5.99,
+      "gasolinaAditivada": 6.777,
+      "etanol": 4.563,
+      "diesel": 5.973
+    }
   },
   {
     "nome": "Coqueiro Combustiveis E Servicos Ltda",
@@ -715,9 +1187,17 @@
     "cep": 96050500,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Raizen",
+    "bandeira": "Coqueiro",
     "cordY": -31.75894611,
-    "cordX": -52.39564
+    "cordX": -52.39564,
+    "nota": 4.3,
+    "nmrNotas": 283,
+    "precos": {
+      "gasolinaComum": 6.284,
+      "gasolinaAditivada": 5.973,
+      "etanol": 4.866,
+      "diesel": 6.383
+    }
   },
   {
     "nome": "Coqueiro Combustiveis E Servicos Ltda",
@@ -727,9 +1207,17 @@
     "cep": 96010280,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Vibra",
+    "bandeira": "Coqueiro",
     "cordY": -31.76679389,
-    "cordX": -52.33535583
+    "cordX": -52.33535583,
+    "nota": 4.7,
+    "nmrNotas": 185,
+    "precos": {
+      "gasolinaComum": 6.129,
+      "gasolinaAditivada": 7.27,
+      "etanol": 4.966,
+      "diesel": 6.159
+    }
   },
   {
     "nome": "Rosa & Filho Comercio De Combustiveis Ltda - Me",
@@ -739,8 +1227,16 @@
     "cep": 96085470,
     "uf": "RS",
     "cidade": "Pelotas",
-    "bandeira": "Raizen",
+    "bandeira": "Shell",
     "cordY": -31.75831722,
-    "cordX": -52.33068556
+    "cordX": -52.33068556,
+    "nota": 3.7,
+    "nmrNotas": 309,
+    "precos": {
+      "gasolinaComum": 5.932,
+      "gasolinaAditivada": 6.788,
+      "etanol": 5.3,
+      "diesel": 5.307
+    }
   }
 ]

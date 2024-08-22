@@ -2,7 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Postos from '../screens/Postos';
-import Users from '../screens/Users';
+import User from '../screens/User';
 import Map from '../screens/Map';
 import {COLORS} from '../assets/colors';
 import LogoutButton from '../components/LogoutButton';
@@ -35,7 +35,7 @@ export default function AppStack({navigation}) {
           tabBarLabel: 'Postos',
           tabBarIcon: ({focused}) => (
             <Icon
-              name="map-outline"
+              name="format-list-bulleted"
               color={focused ? COLORS.primary : COLORS.grey}
               size={26}
             />
@@ -43,10 +43,10 @@ export default function AppStack({navigation}) {
         }}
       />
       <Tab.Screen
-        name="Users"
-        component={Users}
+        name="User"
+        component={User}
         options={{
-          tabBarLabel: 'Usuários',
+          tabBarLabel: 'Perfil',
           tabBarIcon: ({focused}) => (
             <Icon
               name="account-outline"
@@ -63,7 +63,7 @@ export default function AppStack({navigation}) {
           tabBarLabel: 'Mapa',
           tabBarIcon: ({focused}) => (
             <Icon
-              name="map-marker-outline"
+              name="map-outline"
               color={focused ? COLORS.primary : COLORS.grey}
               size={26}
             />
