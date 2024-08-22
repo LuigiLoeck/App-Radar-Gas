@@ -12,6 +12,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {COLORS} from '../../assets/colors';
 import MyButton from '../../components/MyButton';
 import {PostoContext} from '../../context/PostoProvider';
+import faker from 'faker';
 
 const Posto = ({route, navigation}) => {
   const {item} = route.params;
@@ -24,6 +25,12 @@ const Posto = ({route, navigation}) => {
   const [cnpj, setCnpj] = useState('');
   const [cordX, setCordX] = useState('');
   const [cordY, setCordY] = useState('');
+  const [nota, setNota] = useState('');
+  const [nmrNotas, setNmrNotas] = useState('');
+  const [gasolinaComum, setGasolinaComum] = useState('');
+  const [gasolinaAditivada, setGasolinaAditivada] = useState('');
+  const [etanol, setEtanol] = useState('');
+  const [diesel, setDiesel] = useState('');
   const {update, save, delposto} = useContext(PostoContext);
 
   useEffect(() => {
@@ -39,6 +46,12 @@ const Posto = ({route, navigation}) => {
     setCnpj(item.cnpj);
     setCordX(item.cordX);
     setCordY(item.cordY);
+    setNota(item.nota);
+    setNmrNotas(item.nmrNotas);
+    setGasolinaComum(item.precos.gasolinaComum);
+    setGasolinaAditivada(item.precos.gasolinaAditivada);
+    setEtanol(item.precos.etanol);
+    setDiesel(item.precos.diesel);
   }, []);
 
   const showToast = msg => {
@@ -55,7 +68,13 @@ const Posto = ({route, navigation}) => {
       cep === '' ||
       cnpj === '' ||
       cordX === '' ||
-      cordY === ''
+      cordY === '' ||
+      nota === '' ||
+      nmrNotas === '' ||
+      gasolinaComum === '' ||
+      gasolinaAditivada === '' ||
+      etanol === '' ||
+      diesel === ''
     ) {
       Alert.alert('Erro', 'Preencha todos os campos');
       return;
@@ -72,9 +91,16 @@ const Posto = ({route, navigation}) => {
         cnpj: cnpj,
         cordX: cordX,
         cordY: cordY,
+        nota: nota,
+        nmrNotas: nmrNotas,
+        precos: {
+          gasolinaComum: gasolinaComum,
+          gasolinaAditivada: gasolinaAditivada,
+          etanol: etanol,
+          diesel: diesel,
+        },
       })
     ) {
-      // retornando false
       setName('');
       setAddress('');
       setLocal('');
@@ -84,6 +110,12 @@ const Posto = ({route, navigation}) => {
       setCnpj('');
       setCordX('');
       setCordY('');
+      setNota('');
+      setNmrNotas('');
+      setGasolinaComum('');
+      setGasolinaAditivada('');
+      setEtanol('');
+      setDiesel('');
       showToast('Posto atualizado com sucesso');
       navigation.goBack();
     } else {
@@ -122,7 +154,13 @@ const Posto = ({route, navigation}) => {
       cep === '' ||
       cnpj === '' ||
       cordX === '' ||
-      cordY === ''
+      cordY === '' ||
+      nota === '' ||
+      nmrNotas === '' ||
+      gasolinaComum === '' ||
+      gasolinaAditivada === '' ||
+      etanol === '' ||
+      diesel === ''
     ) {
       Alert.alert('Erro', 'Preencha todos os campos');
       return;
@@ -138,6 +176,14 @@ const Posto = ({route, navigation}) => {
         cnpj: cnpj,
         cordX: cordX,
         cordY: cordY,
+        nota: nota,
+        nmrNotas: nmrNotas,
+        precos: {
+          gasolinaComum: gasolinaComum,
+          gasolinaAditivada: gasolinaAditivada,
+          etanol: etanol,
+          diesel: diesel,
+        },
       })
     ) {
       setName('');
@@ -149,11 +195,35 @@ const Posto = ({route, navigation}) => {
       setCnpj('');
       setCordX('');
       setCordY('');
+      setNota('');
+      setNmrNotas('');
+      setGasolinaComum('');
+      setGasolinaAditivada('');
+      setEtanol('');
+      setDiesel('');
       showToast('Posto criado com sucesso');
       navigation.goBack();
     } else {
       Alert.alert('Erro', 'Erro ao criar o posto');
     }
+  };
+
+  const handleGenerateRandomData = () => {
+    setName(faker.company.companyName());
+    setAddress(faker.address.streetAddress());
+    setLocal(faker.address.city());
+    setCity(faker.address.city());
+    setFlag(faker.company.companyName());
+    setCep(faker.address.zipCode());
+    setCnpj(faker.datatype.number({ min: 10000000000000, max: 99999999999999 }).toString());
+    setCordX(faker.address.longitude().toString());
+    setCordY(faker.address.latitude().toString());
+    setNota(faker.datatype.float({ min: 0, max: 5 }).toString());
+    setNmrNotas(faker.datatype.number({ min: 0, max: 500 }).toString());
+    setGasolinaComum(faker.datatype.float({ min: 4, max: 8 }).toString());
+    setGasolinaAditivada(faker.datatype.float({ min: 4, max: 8 }).toString());
+    setEtanol(faker.datatype.float({ min: 3, max: 7 }).toString());
+    setDiesel(faker.datatype.float({ min: 3, max: 7 }).toString());
   };
 
   return (
@@ -259,6 +329,67 @@ const Posto = ({route, navigation}) => {
           placeholderTextColor="#000"
           autoCapitalize="none"
         />
+        <TextInput
+          style={styles.input}
+          placeholder="Nota"
+          keyboardType="numeric"
+          returnKeyType="next"
+          value={nota}
+          onChangeText={t => setNota(t)}
+          placeholderTextColor="#000"
+          autoCapitalize="none"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Número de Notas"
+          keyboardType="numeric"
+          returnKeyType="next"
+          value={nmrNotas}
+          onChangeText={t => setNmrNotas(t)}
+          placeholderTextColor="#000"
+          autoCapitalize="none"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Gasolina Comum"
+          keyboardType="numeric"
+          returnKeyType="next"
+          value={gasolinaComum}
+          onChangeText={t => setGasolinaComum(t)}
+          placeholderTextColor="#000"
+          autoCapitalize="none"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Gasolina Aditivada"
+          keyboardType="numeric"
+          returnKeyType="next"
+          value={gasolinaAditivada}
+          onChangeText={t => setGasolinaAditivada(t)}
+          placeholderTextColor="#000"
+          autoCapitalize="none"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Etanol"
+          keyboardType="numeric"
+          returnKeyType="next"
+          value={etanol}
+          onChangeText={t => setEtanol(t)}
+          placeholderTextColor="#000"
+          autoCapitalize="none"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Diesel"
+          keyboardType="numeric"
+          returnKeyType="next"
+          value={diesel}
+          onChangeText={t => setDiesel(t)}
+          placeholderTextColor="#000"
+          autoCapitalize="none"
+        />
+        <MyButton title="Gerar Dados Aleatórios" onClick={handleGenerateRandomData} />
         {route.params.create ? (
           <MyButton title="Criar" onClick={handleCreate} />
         ) : (
