@@ -12,7 +12,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {COLORS} from '../../assets/colors';
 import MyButton from '../../components/MyButton';
 import {PostoContext} from '../../context/PostoProvider';
-import faker from 'faker';
+import {fakerPT_BR as faker} from '@faker-js/faker';
 
 const Posto = ({route, navigation}) => {
   const {item} = route.params;
@@ -33,25 +33,49 @@ const Posto = ({route, navigation}) => {
   const [diesel, setDiesel] = useState('');
   const {update, save, delposto} = useContext(PostoContext);
 
+  const setsArray = [
+    setName,
+    setAddress,
+    setLocal,
+    setCity,
+    setFlag,
+    setCep,
+    setCnpj,
+    setCordX,
+    setCordY,
+    setNota,
+    setNmrNotas,
+    setGasolinaComum,
+    setGasolinaAditivada,
+    setEtanol,
+    setDiesel,
+  ];
+
+  const getsArray = [
+    name,
+    address,
+    local,
+    city,
+    flag,
+    cep,
+    cnpj,
+    cordX,
+    cordY,
+    nota,
+    nmrNotas,
+    gasolinaComum,
+    gasolinaAditivada,
+    etanol,
+    diesel,
+  ];
+
   useEffect(() => {
     if (route.params.create) {
       return;
     }
-    setName(item.nome);
-    setAddress(item.endereco);
-    setLocal(item.bairro);
-    setCity(item.cidade);
-    setFlag(item.bandeira);
-    setCep(item.cep);
-    setCnpj(item.cnpj);
-    setCordX(item.cordX);
-    setCordY(item.cordY);
-    setNota(item.nota);
-    setNmrNotas(item.nmrNotas);
-    setGasolinaComum(item.precos.gasolinaComum);
-    setGasolinaAditivada(item.precos.gasolinaAditivada);
-    setEtanol(item.precos.etanol);
-    setDiesel(item.precos.diesel);
+    setsArray.forEach((set, index) => {
+      set(item[Object.keys(item)[index]]);
+    });
   }, []);
 
   const showToast = msg => {
@@ -59,23 +83,13 @@ const Posto = ({route, navigation}) => {
   };
 
   const handleUpdate = async () => {
-    if (
-      name === '' ||
-      address === '' ||
-      local === '' ||
-      city === '' ||
-      flag === '' ||
-      cep === '' ||
-      cnpj === '' ||
-      cordX === '' ||
-      cordY === '' ||
-      nota === '' ||
-      nmrNotas === '' ||
-      gasolinaComum === '' ||
-      gasolinaAditivada === '' ||
-      etanol === '' ||
-      diesel === ''
-    ) {
+    let empty = false;
+    getsArray.forEach(item => {
+      if (item === '') {
+        empty = true;
+      }
+    });
+    if (empty) {
       Alert.alert('Erro', 'Preencha todos os campos');
       return;
     }
@@ -101,21 +115,9 @@ const Posto = ({route, navigation}) => {
         },
       })
     ) {
-      setName('');
-      setAddress('');
-      setLocal('');
-      setCity('');
-      setFlag('');
-      setCep('');
-      setCnpj('');
-      setCordX('');
-      setCordY('');
-      setNota('');
-      setNmrNotas('');
-      setGasolinaComum('');
-      setGasolinaAditivada('');
-      setEtanol('');
-      setDiesel('');
+      setsArray.forEach(set => {
+        set('');
+      });
       showToast('Posto atualizado com sucesso');
       navigation.goBack();
     } else {
@@ -145,23 +147,13 @@ const Posto = ({route, navigation}) => {
   };
 
   const handleCreate = async () => {
-    if (
-      name === '' ||
-      address === '' ||
-      local === '' ||
-      city === '' ||
-      flag === '' ||
-      cep === '' ||
-      cnpj === '' ||
-      cordX === '' ||
-      cordY === '' ||
-      nota === '' ||
-      nmrNotas === '' ||
-      gasolinaComum === '' ||
-      gasolinaAditivada === '' ||
-      etanol === '' ||
-      diesel === ''
-    ) {
+    let empty = false;
+    getsArray.forEach(item => {
+      if (item === '') {
+        empty = true;
+      }
+    });
+    if (empty) {
       Alert.alert('Erro', 'Preencha todos os campos');
       return;
     }
@@ -186,44 +178,58 @@ const Posto = ({route, navigation}) => {
         },
       })
     ) {
-      setName('');
-      setAddress('');
-      setLocal('');
-      setCity('');
-      setFlag('');
-      setCep('');
-      setCnpj('');
-      setCordX('');
-      setCordY('');
-      setNota('');
-      setNmrNotas('');
-      setGasolinaComum('');
-      setGasolinaAditivada('');
-      setEtanol('');
-      setDiesel('');
+      setsArray.forEach(set => {
+        set('');
+      });
       showToast('Posto criado com sucesso');
       navigation.goBack();
     } else {
       Alert.alert('Erro', 'Erro ao criar o posto');
     }
   };
-
+  const bandeiras = [
+    'Azeredo',
+    'Coqueiro',
+    'Ipiranga',
+    'Petrobras',
+    'Rodoil',
+    'Shell',
+    'Sim',
+    'BandeiraBranca',
+  ];
   const handleGenerateRandomData = () => {
-    setName(faker.company.companyName());
-    setAddress(faker.address.streetAddress());
-    setLocal(faker.address.city());
-    setCity(faker.address.city());
-    setFlag(faker.company.companyName());
-    setCep(faker.address.zipCode());
-    setCnpj(faker.datatype.number({ min: 10000000000000, max: 99999999999999 }).toString());
-    setCordX(faker.address.longitude().toString());
-    setCordY(faker.address.latitude().toString());
-    setNota(faker.datatype.float({ min: 0, max: 5 }).toString());
-    setNmrNotas(faker.datatype.number({ min: 0, max: 500 }).toString());
-    setGasolinaComum(faker.datatype.float({ min: 4, max: 8 }).toString());
-    setGasolinaAditivada(faker.datatype.float({ min: 4, max: 8 }).toString());
-    setEtanol(faker.datatype.float({ min: 3, max: 7 }).toString());
-    setDiesel(faker.datatype.float({ min: 3, max: 7 }).toString());
+    let fakeCoords = faker.location.nearbyGPSCoordinate({
+      origin: [-31.76275, -52.33001],
+      radius: 20,
+      isMetric: true,
+    });
+    setName(faker.company.name());
+    setAddress(faker.location.secondaryAddress());
+    setLocal(faker.location.county());
+    setCity(faker.location.city());
+    setFlag(bandeiras[Math.floor(Math.random() * bandeiras.length)]);
+    setCep(faker.location.zipCode('########'));
+    setCnpj(
+      faker.number
+        .bigInt({min: 10000000000000, max: 99999999999999})
+        .toString(),
+    );
+    setCordX(fakeCoords[0].toString());
+    setCordY(fakeCoords[1].toString());
+    setNota(faker.number.float({min: 3, max: 5, fractionDigits: 1}).toString());
+    setNmrNotas(faker.number.bigInt({min: 10, max: 500}).toString());
+    setGasolinaComum(
+      faker.number.float({min: 4, max: 6, fractionDigits: 3}).toString(),
+    );
+    setGasolinaAditivada(
+      faker.number.float({min: 6, max: 8, fractionDigits: 3}).toString(),
+    );
+    setEtanol(
+      faker.number.float({min: 4, max: 6, fractionDigits: 3}).toString(),
+    );
+    setDiesel(
+      faker.number.float({min: 3, max: 5, fractionDigits: 3}).toString(),
+    );
   };
 
   return (
@@ -238,6 +244,7 @@ const Posto = ({route, navigation}) => {
           width: 400,
           alignItems: 'center',
           justifyContent: 'center',
+          paddingBottom: 50,
         }}>
         <TextInput
           style={styles.input}
@@ -389,9 +396,14 @@ const Posto = ({route, navigation}) => {
           placeholderTextColor="#000"
           autoCapitalize="none"
         />
-        <MyButton title="Gerar Dados Aleatórios" onClick={handleGenerateRandomData} />
         {route.params.create ? (
-          <MyButton title="Criar" onClick={handleCreate} />
+          <>
+            <MyButton
+              title="Gerar Dados Aleatórios"
+              onClick={handleGenerateRandomData}
+            />
+            <MyButton title="Criar" onClick={handleCreate} />
+          </>
         ) : (
           <>
             <MyButton title="Salvar" onClick={handleUpdate} />

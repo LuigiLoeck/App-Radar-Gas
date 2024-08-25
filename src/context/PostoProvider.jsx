@@ -80,7 +80,6 @@ export const PostoProvider = ({children}) => {
 
 // import React, {createContext, useState, useEffect, useContext} from 'react';
 // import {ApiContext} from './ApiProvider';
-// import {get} from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 
 // export const PostoContext = createContext({});
 
@@ -101,6 +100,7 @@ export const PostoProvider = ({children}) => {
 //       response.data.documents.map(doc => {
 //         let key = doc.name.split('/').pop();
 //         let {fields} = doc;
+//         //console.log(fields);
 
 //         data.push({
 //           id: key,
@@ -113,11 +113,20 @@ export const PostoProvider = ({children}) => {
 //           cnpj: fields.cnpj.integerValue,
 //           cordX: fields.cordX.doubleValue,
 //           cordY: fields.cordY.doubleValue,
+//           nota: fields.nota.doubleValue,
+//           nmrNotas: fields.nmrNotas.integerValue,
+//           precos: {
+//             gasolinaComum:
+//               fields.precos.mapValue.fields.gasolinaComum.doubleValue,
+//             gasolinaAditivada:
+//               fields.precos.mapValue.fields.gasolinaAditivada.doubleValue,
+//             diesel: fields.precos.mapValue.fields.diesel.doubleValue,
+//             etanol: fields.precos.mapValue.fields.etanol.doubleValue,
+//           },
 //         });
 //         //console.log(data);
 //       });
 //       data.sort((a, b) => a.nome.localeCompare(b.nome));
-//       console.log(data);
 //       setPostos(data);
 //     } catch (e) {
 //       console.error('PostoProvider, getPostos:', e);
@@ -137,12 +146,27 @@ export const PostoProvider = ({children}) => {
 //           cnpj: {integerValue: posto.cnpj},
 //           cordX: {doubleValue: posto.cordX},
 //           cordY: {doubleValue: posto.cordY},
+//           nota: {doubleValue: posto.nota},
+//           nmrNotas: {integerValue: posto.nmrNotas},
+//           precos: {
+//             mapValue: {
+//               fields: {
+//                 gasolinaComum: {doubleValue: posto.precos.gasolinaComum},
+//                 gasolinaAditivada: {
+//                   doubleValue: posto.precos.gasolinaAditivada,
+//                 },
+//                 diesel: {doubleValue: posto.precos.diesel},
+//                 etanol: {doubleValue: posto.precos.etanol},
+//               },
+//             },
+//           },
 //         },
 //       });
 //       getPostos();
 //       return true;
 //     } catch (e) {
 //       console.error('PostoProvider, salvar: ' + e);
+//       console.log(e);
 //       return false;
 //     }
 //   };
@@ -160,6 +184,20 @@ export const PostoProvider = ({children}) => {
 //           cnpj: {integerValue: posto.cnpj},
 //           cordX: {doubleValue: posto.cordX},
 //           cordY: {doubleValue: posto.cordY},
+//           nota: {doubleValue: posto.nota},
+//           nmrNotas: {integerValue: posto.nmrNotas},
+//           precos: {
+//             mapValue: {
+//               fields: {
+//                 gasolinaComum: {doubleValue: posto.precos.gasolinaComum},
+//                 gasolinaAditivada: {
+//                   doubleValue: posto.precos.gasolinaAditivada,
+//                 },
+//                 diesel: {doubleValue: posto.precos.diesel},
+//                 etanol: {doubleValue: posto.precos.etanol},
+//               },
+//             },
+//           },
 //         },
 //       });
 //       getPostos();
