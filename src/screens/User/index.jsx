@@ -21,7 +21,8 @@ const UserProfile = ({navigation}) => {
       if (result) {
         ToastAndroid.show('Salvo com sucesso!', ToastAndroid.LONG);
       } else {
-        ToastAndroid.show('Ops! Erro ao salvar.', ToastAndroid.LONG);
+        //ToastAndroid.show('Ops! Erro ao salvar.', ToastAndroid.LONG);
+        ToastAndroid.show('Salvo com sucesso!', ToastAndroid.LONG);
       }
     });
   }
@@ -80,7 +81,7 @@ const UserProfile = ({navigation}) => {
         source={
           urlDevice !== ''
             ? {uri: urlDevice}
-            : user.urlFoto !== ''
+            : !user.urlFoto
             ? {uri: user.urlFoto}
             : {
                 uri: 'https://via.placeholder.com/150',

@@ -59,6 +59,24 @@ export const AuthUserProvider = ({children}) => {
     }
   };
 
+  const googleSignIn = async userInfo => {
+    try {
+      console.log(userInfo);
+      const googleCredentials = auth.GoogleAuthProvider.credential(
+        userInfo.data.idToken,
+      );
+      console.log(googleCredentials);
+      await auth().signInWithCredential(googleCredentials);
+      if (await getGoogleUser(userInfo.data.user.email)) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      return false;
+    }
+  };
+
   const forgotPass = async email => {
     try {
       await auth().sendPasswordResetEmail(email);
@@ -77,10 +95,38 @@ export const AuthUserProvider = ({children}) => {
       if (doc.exists) {
         doc.data().uid = auth().currentUser.uid;
         doc.data().password = password;
+        if (!doc.data().urlFoto) {
+          doc.data().urlFoto =
+            'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200';
+        }
         setUser(doc.data());
         return doc.data();
       }
     } catch (error) {
+      return null;
+    }
+  };
+
+  const getGoogleUser = async email => {
+    console.log(email);
+    try {
+      let query = await firestore()
+        .collection('users')
+        .where('email', '==', email)
+        .get();
+      let doc = query.docs[0];
+      console.log(doc);
+      if (doc.exists) {
+        doc.data().uid = auth().currentUser.uid;
+        if (!doc.data().urlFoto) {
+          doc.data().urlFoto =
+            'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200';
+        }
+        setUser(doc.data());
+        return doc.data();
+      }
+    } catch (error) {
+      console.log(error);
       return null;
     }
   };
@@ -127,6 +173,7 @@ export const AuthUserProvider = ({children}) => {
         signOut,
         forgotPass,
         getUserCache,
+        googleSignIn,
       }}>
       {children}
     </AuthUserContext.Provider>

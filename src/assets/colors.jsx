@@ -1,14 +1,14 @@
 export const COLORS = {
-  primary: '#F08B0F',
-  primaryDark: '#A35E0A', 
+  primary: '#FFA73B',
+  primaryDark: '#A35E0A',
   accent: '#523F70',
   accentSecundary: '#3F704A',
-  grey: '#86939e', 
+  grey: '#86939e',
   white: '#F0F0F0',
-  black: '#080808', 
-  error: '#D81B60', 
+  black: '#080808',
+  error: '#D81B60',
   transparent: 'transparent',
-  test: '#3D7C9B'
+  test: '#3D7C9B',
 };
 
 //#0834FF
