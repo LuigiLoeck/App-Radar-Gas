@@ -2,33 +2,54 @@ import React, {useState, useEffect, useContext} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {PostoContext} from '../../context/PostoProvider';
-
+import {AuthUserContext} from '../../context/AuthUserProvider';
+import Loading from '../../components/Loading';
 import {COLORS} from '../../assets/colors';
+import Icon from 'react-native-vector-icons/FontAwesome6';
 
 const Map = ({navigation}) => {
-  const {postos} = useContext(PostoContext);
-  const bandeiras = {
-    Azeredo: require('../../assets/images/Azeredo.png'),
-    Coqueiro: require('../../assets/images/Coqueiro.png'),
-    Ipiranga: require('../../assets/images/Ipiranga.png'),
-    Petrobras: require('../../assets/images/Petrobras.png'),
-    Rodoil: require('../../assets/images/Rodoil.png'),
-    Shell: require('../../assets/images/Shell.png'),
-    Sim: require('../../assets/images/Sim.png'),
-    BandeiraBranca: require('../../assets/images/BandeiraBranca.png'),
-  };
+  const {postos, imagesLoaded} = useContext(PostoContext);
+  const {user} = useContext(AuthUserContext);
+
+  if (!imagesLoaded) {
+    return <Loading />;
+  }
 
   return (
     <View style={styles.container}>
+      <View></View>
       <MapView
         provider={PROVIDER_GOOGLE}
         style={styles.map}
         region={{
-          latitude: -31.76275,
-          longitude: -52.33001,
+          latitude: user.location ? user.location.latitude : -31.76275,
+          longitude: user.location ? user.location.longitude : -52.33001,
           latitudeDelta: 0.015,
           longitudeDelta: 0.0121,
         }}>
+        {user.location && (
+          <Marker
+            coordinate={{
+              latitude: user.location.latitude,
+              longitude: user.location.longitude,
+            }}
+            tracksViewChanges={false}
+            anchor={{x: 0.5, y: 0.5}}>
+            <View className="h-32 w-32 justify-center items-center">
+              <View className="rounded-full h-16 w-16 bg-primary-600 opacity-20 absolute" />
+              <Icon
+                name="location-arrow"
+                color={COLORS.primary}
+                size={30}
+                style={{
+                  transform: [{rotate: `${user.location.bearing}deg`}],
+                  rigth: 2,
+                  top: 2,
+                }}
+              />
+            </View>
+          </Marker>
+        )}
         {postos.map((posto, index) => (
           <Marker
             key={index}
@@ -45,11 +66,7 @@ const Map = ({navigation}) => {
                   {posto.precos.gasolinaComum.toFixed(2)}
                 </Text>
                 <Image
-                  source={
-                    bandeiras[posto.bandeira]
-                      ? bandeiras[posto.bandeira]
-                      : bandeiras.BandeiraBranca
-                  }
+                  source={{uri: posto.bandImage}}
                   style={styles.markerImage}
                 />
               </View>

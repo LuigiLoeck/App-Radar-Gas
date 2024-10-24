@@ -1,11 +1,31 @@
 import React, {createContext, useState, useEffect} from 'react';
 import firestore from '@react-native-firebase/firestore';
+import {Image} from 'react-native';
 import postosData from '../assets/postosData.json';
 
 export const PostoContext = createContext({});
 
 export const PostoProvider = ({children}) => {
   const [postos, setPostos] = useState([]);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  const bandeiras = {
+    Azeredo:
+      'https://firebasestorage.googleapis.com/v0/b/radargasapp.appspot.com/o/images%2Fbandeiras%2FAzeredo.png?alt=media&token=720d050d-cc6c-42ce-b91d-5868ee77afa0',
+    Coqueiro:
+      'https://firebasestorage.googleapis.com/v0/b/radargasapp.appspot.com/o/images%2Fbandeiras%2FCoqueiro.png?alt=media&token=bb7de0a2-df4e-4790-a2f2-a128e5419d92',
+    Ipiranga:
+      'https://firebasestorage.googleapis.com/v0/b/radargasapp.appspot.com/o/images%2Fbandeiras%2FIpiranga.png?alt=media&token=3e565c3f-3c62-4949-969a-5a5ae7df3361',
+    Petrobras:
+      'https://firebasestorage.googleapis.com/v0/b/radargasapp.appspot.com/o/images%2Fbandeiras%2FPetrobras.png?alt=media&token=1bbbe9ac-0770-41bf-b3b7-7fe0aab7c420',
+    Rodoil:
+      'https://firebasestorage.googleapis.com/v0/b/radargasapp.appspot.com/o/images%2Fbandeiras%2FRodoil.png?alt=media&token=6a8c8a41-5df9-4d4f-a613-191b2a3940c7',
+    Shell:
+      'https://firebasestorage.googleapis.com/v0/b/radargasapp.appspot.com/o/images%2Fbandeiras%2FShell.png?alt=media&token=d40aaeaa-179c-4c39-8671-99987beec72e',
+    Sim: 'https://firebasestorage.googleapis.com/v0/b/radargasapp.appspot.com/o/images%2Fbandeiras%2FSim.png?alt=media&token=23588d45-41b4-40b1-84f7-ff3486fcfeda',
+    BandeiraBranca:
+      'https://firebasestorage.googleapis.com/v0/b/radargasapp.appspot.com/o/images%2Fbandeiras%2FBandeiraBranca.png?alt=media&token=7583e106-bc77-4bb0-ba70-b4507ab35a38',
+  };
 
   useEffect(() => {
     const listener = firestore()
@@ -18,9 +38,13 @@ export const PostoProvider = ({children}) => {
             data.push({
               id: doc.id,
               ...doc.data(),
+              bandImage: bandeiras[doc.data().bandeira]
+                ? bandeiras[doc.data().bandeira]
+                : bandeiras.BandeiraBranca,
             });
           });
           setPostos(data);
+          prefetchImages(data);
         }
       });
 
@@ -29,50 +53,63 @@ export const PostoProvider = ({children}) => {
     };
   }, []);
 
-  const save = async posto => {
-    try {
-      await firestore().collection('postos').add(posto);
-      return true;
-    } catch (e) {
-      console.error('PostoProvider, salvar: ' + e);
-      return false;
-    }
-    // try {
-    //   for (let i = 0; i < postosData.length; i++) {
-    //     await firestore().collection('postos').add(postosData[i]);
-    //   }
-    //   return true;
-    // } catch (e) {
-    //   console.error('PostoProvider, salvar: ' + e);
-    //   return false;
-    // }
+  const prefetchImages = postos => {
+    let loadedImages = 0;
+    postos.forEach(posto => {
+      Image.prefetch(posto.bandImage).then(() => {
+        loadedImages += 1;
+        if (loadedImages === postos.length) {
+          setImagesLoaded(true);
+        }
+      });
+    });
   };
 
-  const update = async posto => {
-    let {id} = posto;
-    delete posto.id;
-    try {
-      await firestore().collection('postos').doc(id).update(posto);
-      return true;
-    } catch (e) {
-      console.error('PostoProvider, atualizar: ' + e);
-      return false;
-    }
-  };
+  // const save = async posto => {
+  //   try {
+  //     await firestore().collection('postos').add(posto);
+  //     return true;
+  //   } catch (e) {
+  //     console.error('PostoProvider, salvar: ' + e);
+  //     return false;
+  //   }
+  //   // try {
+  //   //   for (let i = 0; i < postosData.length; i++) {
+  //   //     await firestore().collection('postos').add(postosData[i]);
+  //   //   }
+  //   //   return true;
+  //   // } catch (e) {
+  //   //   console.error('PostoProvider, salvar: ' + e);
+  //   //   return false;
+  //   // }
+  // };
 
-  const delposto = async posto => {
-    console.log(posto);
-    try {
-      await firestore().collection('postos').doc(posto.id).delete();
-      return true;
-    } catch (e) {
-      console.error('PostoProvider, deletar: ' + e);
-      return false;
-    }
-  };
+  // const update = async posto => {
+  //   let {id} = posto;
+  //   delete posto.id;
+  //   try {
+  //     await firestore().collection('postos').doc(id).update(posto);
+  //     return true;
+  //   } catch (e) {
+  //     console.error('PostoProvider, atualizar: ' + e);
+  //     return false;
+  //   }
+  // };
+
+  // const delposto = async posto => {
+  //   console.log(posto);
+  //   try {
+  //     await firestore().collection('postos').doc(posto.id).delete();
+  //     return true;
+  //   } catch (e) {
+  //     console.error('PostoProvider, deletar: ' + e);
+  //     return false;
+  //   }
+  // };
 
   return (
-    <PostoContext.Provider value={{postos, setPostos, save, update, delposto}}>
+    <PostoContext.Provider
+      value={{postos, imagesLoaded, setPostos}}>
       {children}
     </PostoContext.Provider>
   );

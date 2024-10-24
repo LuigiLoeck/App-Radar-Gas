@@ -2,11 +2,26 @@ import React, {createContext, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import firestore from '@react-native-firebase/firestore';
+import GetLocation from 'react-native-get-location';
 
 export const AuthUserContext = createContext({});
 
 export const AuthUserProvider = ({children}) => {
   const [user, setUser] = useState(null);
+
+  const getUserLocation = async () => {
+    try {
+      const location = await GetLocation.getCurrentPosition({
+        enableHighAccuracy: true,
+        timeout: 15000,
+      });
+      console.log(location);
+      return location;
+    } catch (error) {
+      console.log('AuthUserProvider, getUserLocation:', error);
+      return null;
+    }
+  };
 
   const storeUserCache = async (email, password) => {
     try {
@@ -99,6 +114,7 @@ export const AuthUserProvider = ({children}) => {
           doc.data().urlFoto =
             'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200';
         }
+        doc.data().location = await getUserLocation();
         setUser(doc.data());
         return doc.data();
       }
@@ -122,6 +138,7 @@ export const AuthUserProvider = ({children}) => {
           doc.data().urlFoto =
             'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200';
         }
+        doc.data().location = await getUserLocation();
         setUser(doc.data());
         return doc.data();
       }

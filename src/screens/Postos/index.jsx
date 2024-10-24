@@ -42,18 +42,6 @@ const Postos = ({navigation}) => {
         style={styles.flatlist}
       />
 
-      <MyButton
-        title="Adicionar Posto"
-        onClick={() =>
-          navigation.navigate('Posto', {
-            item: {
-              name: '',
-              address: '',
-            },
-            create: true,
-          })
-        }
-      />
       {loading && <Loading />}
     </SafeAreaView>
   );
@@ -83,6 +71,6 @@ const styles = StyleSheet.create({
   flatlist: {
     width: '80%',
     marginTop: 20,
-    maxHeight: '80%',
+    maxHeight: '100%',
   },
 });
