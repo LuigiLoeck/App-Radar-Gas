@@ -1,5 +1,12 @@
-import React, {useState, useEffect, useContext} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import React, {useState, useEffect, useContext, useRef} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {PostoContext} from '../../context/PostoProvider';
 import {AuthUserContext} from '../../context/AuthUserProvider';
@@ -15,11 +22,43 @@ const Map = ({navigation}) => {
     return <Loading />;
   }
 
+  const mapViewRef = useRef(null);
+
   return (
     <View style={styles.container}>
-      <View></View>
+      <View className="absolute z-40 p-6 top-0 left-0 right-0 items-center justify-center">
+        <View
+          className="bg-white h-14 w-full rounded-full flex flex-row justify-center items-center py-2 px-6"
+          style={styles.searchBox}>
+          <Icon
+            name="neuter"
+            color={COLORS.black}
+            size={26}
+            style={{
+              transform: [{rotate: '-45deg'}],
+            }}
+          />
+          <TextInput
+            returnKeyType="next"
+            placeholder="Procure um posto..."
+            placeholderTextColor="#0008"
+            autoCapitalize="none"
+            className="flex-1 text-black text-lg ml-2 h-16"
+          />
+        </View>
+        <View className="h-12 w-full flex flex-row justify-between items-center">
+          <View className="bg-primary-500 h-8 w-max rounded-full justify-between items-center px-4 flex-row gap-3">
+            <Text className="text-black">Gasolina Comum | Shell</Text>
+            <Icon name="chevron-down" color={COLORS.black} size={12} />
+          </View>
+          <View className="bg-white border h-8 border-black w-max px-5 justify-center items-center rounded-full">
+            <Text className="text-black">Favoritos</Text>
+          </View>
+        </View>
+      </View>
       <MapView
         provider={PROVIDER_GOOGLE}
+        ref={mapViewRef}
         style={styles.map}
         region={{
           latitude: user.location ? user.location.latitude : -31.76275,
@@ -75,6 +114,22 @@ const Map = ({navigation}) => {
           </Marker>
         ))}
       </MapView>
+      <TouchableOpacity
+        className="absolute bg-white right-7 bottom-28 h-14 w-14 rounded-full justify-center items-center"
+        style={styles.searchBox}
+        onPress={() =>
+          mapViewRef.current.animateToRegion(
+            {
+              latitude: user.location.latitude,
+              longitude: user.location.longitude,
+              latitudeDelta: 0.015,
+              longitudeDelta: 0.0121,
+            },
+            1000,
+          )
+        }>
+        <Icon name="location-crosshairs" color={COLORS.primary} size={26} />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -123,5 +178,9 @@ const styles = StyleSheet.create({
     borderLeftColor: 'transparent',
     borderRightColor: 'transparent',
     borderTopColor: COLORS.gray,
+  },
+  searchBox: {
+    shadowColor: '#000',
+    elevation: 5,
   },
 });
