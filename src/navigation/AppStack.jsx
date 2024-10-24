@@ -22,6 +22,7 @@ export default function AppStack({navigation}) {
     if (routeName === 'Postos' || routeName === 'User') {
       return {
         backgroundColor: '#fff',
+        position: 'absolute',
         height: 56,
         bottom: 0,
         width: '85%',
